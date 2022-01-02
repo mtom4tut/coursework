@@ -1,0 +1,17 @@
+{
+    "name": "course-php/course-php",
+    "require": {
+        "swiftmailer/swiftmailer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoursePhp\\CoursePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "m.tutukov",
+            "email": "maks.tutukov@mail.ru"
+        }
+    ]
+}
