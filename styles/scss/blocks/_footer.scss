@@ -26,8 +26,6 @@
   }
 
   &__list {
-    list-style: none;
-
     li {
       transition: color 0.3s ease-in;
 
@@ -89,7 +87,6 @@
   }
 
   &__social {
-    list-style: none;
     display: flex;
 
     li {
@@ -121,7 +118,6 @@
   }
 
   &__payments {
-    list-style: none;
     display: flex;
 
     li + li {

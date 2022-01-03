@@ -50,6 +50,10 @@ button {
   position: relative;
 }
 
+ol, ul {
+  list-style: none;
+}
+
 .header {
   color: #fff;
 }
@@ -125,7 +129,6 @@ button {
 }
 
 .header__bottom-nav ul {
-  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -307,7 +310,6 @@ button {
   font-size: 14px;
   line-height: 24px;
   border-radius: 3px;
-  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -587,10 +589,6 @@ button {
   font-style: normal;
 }
 
-.footer__list {
-  list-style: none;
-}
-
 .footer__list li {
   -webkit-transition: color 0.3s ease-in;
   transition: color 0.3s ease-in;
@@ -657,7 +655,6 @@ button {
 }
 
 .footer__social {
-  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -697,7 +694,6 @@ button {
 }
 
 .footer__payments {
-  list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
