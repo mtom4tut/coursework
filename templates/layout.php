@@ -1,3 +1,8 @@
+<?php
+// Подключение бд
+include_once("./config/init.php");
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -25,9 +30,18 @@
         </div>
 
         <div class="header__top-right">
-          <b>Добро пожаловать!</b>
-          <a href="/register.php">Регистрация</a>
-          <a href="/">Вход</a>
+          <b>
+            Добро пожаловать<?php if (isset($_SESSION['user']))
+              echo ', '.$_SESSION['user']['name']
+            ?>!
+          </b>
+
+          <?php if (!isset($_SESSION['user'])) : ?>
+            <a href="/register.php">Регистрация</a>
+            <a href="/authorization.php">Вход</a>
+          <?php else : ?>
+            <a href="/logout.php">Выход</a>
+          <?php endif; ?>
         </div>
       </div>
     </div>
