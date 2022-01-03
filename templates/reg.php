@@ -27,14 +27,14 @@
         </div>
 
         <div class="form__group">
-          <label class="form__label" for="email">E-mail <sup>*</sup></label>
+          <label class="form__label" for="email">E-Mail <sup>*</sup></label>
 
           <input class="form__input
             <?php
             if (isset($errors["email"])) {
               print("form__input--error");
             }
-            ?>" type="text" name="email" id="email" value="<?= get_post_val("email") ?>" placeholder="Введите e-mail">
+            ?>" type="text" name="email" id="email" value="<?= get_post_val("email") ?>" placeholder="Введите E-Mail">
 
           <?php if (isset($errors["email"])) : ?>
             <p class="form__message"> <?= $errors["email"] ?> </p>

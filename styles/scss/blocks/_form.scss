@@ -1,6 +1,4 @@
 .form {
-  margin-bottom: 84px;
-
   fieldset {
     min-width: 0;
     padding: 0;
@@ -25,12 +23,12 @@
     padding: 7px 0;
   }
 
-  label {
+  &__label {
     display: inline-block;
     width: 20%;
     font-size: 12px;
     font-weight: 400;
-    color: #333;
+    color: #777;
     text-align: end;
     padding-right: 40px;
   }
@@ -75,7 +73,7 @@
 
   &__message {
     font-size: 12px;
-    margin-left: 21%;
+    margin-left: 21% ;
     padding: 5px 0;
     color: #ee372a;
   }
@@ -109,5 +107,37 @@
         cursor: pointer;
       }
     }
+  }
+}
+
+.form.auth {
+  .form__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form__group + .form__group {
+    margin-top: 5px;
+  }
+
+  .form__label {
+    width: 100%;
+    text-align: start;
+    padding-top: 10px;
+    padding-bottom: 0;
+    border: none;
+  }
+
+  .form__input {
+    width: 100%;
+  }
+
+  .form__submit .btn-primary {
+    margin-top: 0;
+  }
+
+  .form__message {
+    margin-left: 0;
+    padding-bottom: 0;
   }
 }

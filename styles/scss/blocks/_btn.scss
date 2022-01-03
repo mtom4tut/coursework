@@ -1,0 +1,21 @@
+.btn-primary, .form__submit .btn-primary {
+  outline: none;
+  border: none;
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 28px 15px;
+  color: $color-text-primary;
+  background-color: $color-background-accent;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+
+  border-radius: 3px;
+
+  transition: background-color 0.4s;
+
+  &:hover {
+    background-color: $color-text-default;
+  }
+}

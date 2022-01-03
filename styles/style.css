@@ -188,6 +188,26 @@ button {
   background-color: #000;
 }
 
+.btn-primary, .form__submit .btn-primary {
+  outline: none;
+  border: none;
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 28px 15px;
+  color: #fff;
+  background-color: #97cf1f;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.4s;
+  transition: background-color 0.4s;
+}
+
+.btn-primary:hover, .form__submit .btn-primary:hover {
+  background-color: #000;
+}
+
 .main.reg .main__heading {
   text-transform: uppercase;
   font-size: 34px;
@@ -217,6 +237,39 @@ button {
 
 .main.reg .main__info a:hover {
   text-decoration: underline;
+}
+
+.main.auth {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-column-gap: 40px;
+          column-gap: 40px;
+}
+
+.main.auth .well {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-top: 2px solid #97cf1f;
+  margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.main.auth .well h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.main.auth .well__text {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20px 0;
+  font-size: 14px;
+  line-height: 24px;
+  color: #777;
 }
 
 .swiper-slider .slide-desc {
@@ -250,24 +303,6 @@ button {
   margin-bottom: 8px;
 }
 
-.swiper-slider .slide-desc .btn-primary {
-  display: inline-block;
-  margin-top: 22px;
-  padding: 14px 28px 15px;
-  color: #fff;
-  background-color: #97cf1f;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
-  border-radius: 3px;
-  -webkit-transition: background-color 0.4s;
-  transition: background-color 0.4s;
-}
-
-.swiper-slider .slide-desc .btn-primary:hover {
-  background-color: #000;
-}
-
 .breadcrumb {
   margin: 15px 0 25px;
   margin-top: 128px;
@@ -298,10 +333,6 @@ button {
   color: #97cf1f;
 }
 
-.form {
-  margin-bottom: 84px;
-}
-
 .form fieldset {
   min-width: 0;
   padding: 0;
@@ -326,12 +357,12 @@ button {
   padding: 7px 0;
 }
 
-.form label {
+.form__label {
   display: inline-block;
   width: 20%;
   font-size: 12px;
   font-weight: 400;
-  color: #333;
+  color: #777;
   text-align: end;
   padding-right: 40px;
 }
@@ -422,5 +453,40 @@ button {
 .form__submit input:hover {
   background-color: #000;
   cursor: pointer;
+}
+
+.form.auth .form__group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form.auth .form__group + .form__group {
+  margin-top: 5px;
+}
+
+.form.auth .form__label {
+  width: 100%;
+  text-align: start;
+  padding-top: 10px;
+  padding-bottom: 0;
+  border: none;
+}
+
+.form.auth .form__input {
+  width: 100%;
+}
+
+.form.auth .form__submit .btn-primary {
+  margin-top: 0;
+}
+
+.form.auth .form__message {
+  margin-left: 0;
+  padding-bottom: 0;
 }
 /*# sourceMappingURL=style.css.map */

@@ -27,23 +27,3 @@
   font-size: 18px;
   margin-bottom: 8px;
 }
-
-.swiper-slider .slide-desc .btn-primary {
-  display: inline-block;
-  margin-top: 22px;
-  padding: 14px 28px 15px;
-  color: $color-text-primary;
-  background-color: $color-background-accent;
-
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
-
-  border-radius: 3px;
-
-  transition: background-color 0.4s;
-
-  &:hover {
-    background-color: $color-text-default;
-  }
-}
