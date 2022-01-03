@@ -32,8 +32,8 @@ include_once("./config/init.php");
         <div class="header__top-right">
           <b>
             Добро пожаловать<?php if (isset($_SESSION['user']))
-              echo ', '.$_SESSION['user']['name']
-            ?>!
+                              echo ', ' . $_SESSION['user']['name']
+                            ?>!
           </b>
 
           <?php if (!isset($_SESSION['user'])) : ?>
@@ -82,7 +82,70 @@ include_once("./config/init.php");
   <?= $main ?>
 
   <footer class="footer">
+    <div class="footer__top">
+      <div class="container footer__container">
+        <div class="footer__top-left">
+          <h3 class="footer__title">О нас</h3>
+          <p class="footer__text">Наша миссия - быть магазином канцелярских товаров №1, и мы с гордостью выполняем ее из года в год. Мы гордимся тем, что предоставляем вам продукты премиум-класса и первоклассные услуги. Вы должны знать, что как клиент вы получите огромную выгоду от работы с нашей компанией. Наша политика обслуживания клиентов помогает нам оставаться на вершине нашего бизнеса более пятнадцати лет, потому что мы знаем свое дело и каждый раз выполняем свою работу надежно.</p>
+        </div>
 
+        <div class="footer__top-center">
+          <h3 class="footer__title">Информация</h3>
+
+          <ul class="footer__list">
+            <li class="footer__text"><a href="/">O нас</a></li>
+            <li class="footer__text"><a href="/">Информация о доставке</a></li>
+            <li class="footer__text"><a href="/">Условия использования</a></li>
+            <li class="footer__text"><a href="/">Политика конфиденциальности</a></li>
+            <li class="footer__text"><a href="/">Контакты</a></li>
+            <li class="footer__text"><a href="/">Возврат</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__top-right">
+          <h3 class="footer__title">Информация о магазине</h3>
+
+          <address>
+            <dl>
+              <dt class="footer__text"><i class="fas fa-map-marker-alt"></i>Адрес:&#160;</dt>
+              <dd><a class="footer-link" href="//www.google.com/maps/?q=40.6700,+-73.9400" target="_blank"> 4578 Marmora Road, Glasgow, D04 89GR</a></dd>
+            </dl>
+            <dl>
+              <dt class="footer__text"><i class="fas fa-phone-alt"></i>Телефон:&#160;</dt>
+              <dd>
+                <a class="footer-link" href="callto:8001230045">(800) 123-0045</a>; <a class="footer-link" href="callto:8001230046">(800) 123-0046</a>
+              </dd>
+            </dl>
+            <dl>
+              <dt class="footer__text"><i class="far fa-clock"></i>Мы открыты:&#160;</dt>
+              <dd>Mn-Fr: 10 am-8 pm</dd>
+            </dl>
+          </address>
+          <p><i class="far fa-envelope"></i><span class="footer__text">E-Mail: </span> <a href="mailto:demo-coursework@mail.ru">demo-coursework@mail.ru</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__container-bottom">
+        <ul class="footer__social">
+          <li><a class="fab fa-facebook-f" href="https://www.facebook.com/" title="Facebook"></a></li>
+          <li><a class="fab fa-twitter" href="https://twitter.com/" title="Twitter"></a></li>
+          <li><a class="fab fa-google-plus-g" href="https://plus.google.com/" title="Google+"></a></li>
+        </ul>
+
+        <ul class="footer__payments">
+          <li><img src="img/payments/1.jpg" alt=""></li>
+          <li><img src="img/payments/2.jpg" alt=""></li>
+          <li><img src="img/payments/3.jpg" alt=""></li>
+          <li><img src="img/payments/4.jpg" alt=""></li>
+          <li><img src="img/payments/5.jpg" alt=""></li>
+        </ul>
+
+        <p class="footer__copyright">
+          &#169; Курсовая работа 2021-2022
+        </p>
+      </div>
+    </div>
   </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
