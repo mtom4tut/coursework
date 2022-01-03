@@ -13,7 +13,7 @@
 
   border-radius: 3px;
 
-  transition: background-color 0.4s;
+  transition: background-color 0.3s ease-in;
 
   &:hover {
     background-color: $color-background-primary;

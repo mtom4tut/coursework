@@ -76,8 +76,8 @@ button {
 .header__top-left a,
 .header__top-right a {
   color: #fff;
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
 }
 
 .header__top-left a:hover,
@@ -142,8 +142,8 @@ button {
 }
 
 .header__bottom-nav a {
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
 }
 
 .header__bottom-nav a:hover {
@@ -152,8 +152,8 @@ button {
 
 .header__bottom-basket {
   position: relative;
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
 }
 
 .header__bottom-basket::before {
@@ -175,8 +175,8 @@ button {
   top: -12px;
   left: 7px;
   font-size: 10px;
-  -webkit-transition: background-color 0.3s, color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
+  -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
 
 .header__bottom-basket:hover {
@@ -200,8 +200,8 @@ button {
   font-weight: 700;
   line-height: 21px;
   border-radius: 3px;
-  -webkit-transition: background-color 0.4s;
-  transition: background-color 0.4s;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
 }
 
 .btn-primary:hover, .form__submit .btn-primary:hover {
@@ -441,8 +441,8 @@ button {
   font-weight: 700;
   padding: 14px 20px;
   border-radius: 6px;
-  -webkit-transition: background-color 0.3s;
-  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
 }
 
 .form__submit input:hover {
@@ -485,6 +485,77 @@ button {
   padding-bottom: 0;
 }
 
+.banner {
+  margin-top: 57px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -webkit-column-gap: 40px;
+          column-gap: 40px;
+}
+
+.banner__item {
+  position: relative;
+}
+
+.banner__item + .banner__item {
+  margin-top: 30px;
+}
+
+.banner__item .s-desc {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 49.5%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.banner__item:hover .banner__img:before {
+  opacity: 1;
+}
+
+.banner__item:hover .s-desc .banner__title {
+  font-size: 36px;
+}
+
+.banner__item:hover .s-desc .banner__desc {
+  font-size: 12px;
+}
+
+.banner__img {
+  position: relative;
+}
+
+.banner__img::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(151, 207, 31, 0.8);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.banner__title, .banner__desc {
+  font-size: 0;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
+.banner__title {
+  line-height: 36px;
+  text-transform: uppercase;
+}
+
 .footer {
   margin-top: 84px;
 }
@@ -498,10 +569,10 @@ button {
 .footer__container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 0.6fr 1.4fr;
-      grid-template-columns: 1fr 0.6fr 1.4fr;
-  -webkit-column-gap: 60px;
-          column-gap: 60px;
+  -ms-grid-columns: 1fr 0.7fr 1.3fr;
+      grid-template-columns: 1fr 0.7fr 1.3fr;
+  -webkit-column-gap: 84px;
+          column-gap: 84px;
 }
 
 .footer__title {
@@ -521,8 +592,8 @@ button {
 }
 
 .footer__list li {
-  -webkit-transition: color 0.3s;
-  transition: color 0.3s;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
 }
 
 .footer__list li:hover {
@@ -562,8 +633,8 @@ button {
 .footer__top-right a {
   font-size: 12px;
   font-weight: 700;
-  -webkit-transition: color 0.3s;
-  transition: color 0.3s;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
 }
 
 .footer__top-right a:hover {
@@ -598,8 +669,8 @@ button {
   border-radius: 50%;
   background-color: #fff;
   color: #97cf1f;
-  -webkit-transition: background-color 0.3s, color 0.3s;
-  transition: background-color 0.3s, color 0.3s;
+  -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
 
 .footer__social li a {

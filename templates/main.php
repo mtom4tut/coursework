@@ -1,9 +1,8 @@
 <main class="main">
-  <div class="main__slider">
-
+  <div class="slider">
     <div class="swiper-container swiper-slider swiper-container-horizontal swiper-container-fade" data-loop="false" data-autoplay="5000" data-height="590px" data-min-height="200px" data-slide-effect="fade" data-slide-speed="1600ms" data-keyboard="false" data-mousewheel="false" data-mousewheel-release="false" style="height: 590px;">
       <div class="swiper-wrapper" style="transition-duration: 1600ms;">
-        <div class="swiper-slide" data-slide-bg="https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-01-1920x890.png" style="background-image: url(&quot;https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-01-1920x890.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 1600ms;">
+        <div class="swiper-slide" style="background-image: url(&quot;img/slider/1.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 1600ms;">
           <div class="slide-desc">
             <div class="container">
               <div>
@@ -16,7 +15,7 @@
           </div>
         </div>
 
-        <div class="swiper-slide swiper-slide-prev" data-slide-bg="https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-02-1920x890.png" style="background-image: url(&quot;https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-02-1920x890.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(-1998px, 0px, 0px); transition-duration: 1600ms;">
+        <div class="swiper-slide swiper-slide-prev" style="background-image: url(&quot;img/slider/2.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(-1998px, 0px, 0px); transition-duration: 1600ms;">
           <div class="slide-desc">
             <div class="container">
               <div>
@@ -29,7 +28,7 @@
           </div>
         </div>
 
-        <div class="swiper-slide swiper-slide-active" data-slide-bg="https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-03-1920x890.png" style="background-image: url(&quot;https://livedemo00-opencart.template-help.com/opencart_prod-20707_v1/image/cache/catalog/slider/slide-03-1920x890.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(-3996px, 0px, 0px); transition-duration: 1600ms;">
+        <div class="swiper-slide swiper-slide-active" style="background-image: url(&quot;img/slider/3.png&quot;); background-size: cover; width: 1998px; opacity: 1; transform: translate3d(-3996px, 0px, 0px); transition-duration: 1600ms;">
           <div class="slide-desc">
             <div class="container">
               <div>
@@ -45,6 +44,66 @@
 
       <div class="swiper-button-next swiper-button-disabled"></div>
       <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="banner">
+      <div class="banner__column">
+        <div class="banner__item">
+          <a class="banner__link" href="/">
+            <div class="banner__img"><img src="img/banner/1.png" alt="banner-1" class="img-responsive"></div>
+            <div class="s-desc">
+              <div class="banner__title">Блокноты</div>
+              <div class="banner__desc">Начиная с 521&#8381;</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="banner__item">
+          <a class="banner__link" href="/">
+            <div class="banner__img"><img src="img/banner/2.png" alt="banner-2" class="img-responsive"></div>
+            <div class="s-desc">
+              <div class="banner__title">Дневники</div>
+              <div class="banner__desc">Начиная с 449&#8381;</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="banner__column">
+        <div class="banner__item">
+          <a class="banner__link" href="/">
+            <div class="banner__img"><img src="img/banner/3.png" alt="banner-3" class="img-responsive"></div>
+            <div class="s-desc">
+              <div class="banner__title">Школьные <br/> аксессуары</div>
+              <div class="banner__desc">Начиная с 49&#8381;</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="banner__column">
+        <div class="banner__item">
+          <a class="banner__link" href="/">
+            <div class="banner__img"><img src="img/banner/4.png" alt="banner-4" class="img-responsive"></div>
+            <div class="s-desc">
+              <div class="banner__title">Календари</div>
+              <div class="banner__desc">Начиная с 699&#8381;</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="banner__item">
+          <a class="banner__link" href="/">
+            <div class="banner__img"><img src="img/banner/5.png" alt="banner-5" class="img-responsive"></div>
+            <div class="s-desc">
+              <div class="banner__title">Книги</div>
+              <div class="banner__desc">Начиная с 599&#8381;</div>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </main>

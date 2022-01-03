@@ -100,7 +100,7 @@
       font-weight: 700;
       padding: 14px 20px;
       border-radius: 6px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease-in;
 
       &:hover {
         background-color: $color-text-default;

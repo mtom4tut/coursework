@@ -20,7 +20,7 @@
   &__top-left a,
   &__top-right a {
     color: $color-text-primary;
-    transition: color 0.4s;
+    transition: color 0.3s ease-in;
 
     &:hover {
       color: $color-text-default;
@@ -73,7 +73,7 @@
   }
 
   &__bottom-nav a {
-    transition: color 0.4s;
+    transition: color 0.3s ease-in;
 
     &:hover {
       color: $color-text-accent;
@@ -82,7 +82,7 @@
 
   &__bottom-basket {
     position: relative;
-    transition: color 0.4s;
+    transition: color 0.3s ease-in;
 
     &::before {
       content: '0';
@@ -99,7 +99,7 @@
       left: 7px;
       font-size: 10px;
 
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in;
     }
 
     &:hover {

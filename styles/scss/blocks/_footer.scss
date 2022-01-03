@@ -9,8 +9,8 @@
 
   &__container {
     display: grid;
-    grid-template-columns: 1fr 0.6fr 1.4fr;
-    column-gap: 60px;
+    grid-template-columns: 1fr 0.7fr 1.3fr;
+    column-gap: 84px;
   }
 
   &__title {
@@ -29,7 +29,7 @@
     list-style: none;
 
     li {
-      transition: color 0.3s;
+      transition: color 0.3s ease-in;
 
       &:hover {
         color: $color-text-accent;
@@ -69,7 +69,7 @@
     a {
       font-size: 12px;
       font-weight: 700;
-      transition: color 0.3s;
+      transition: color 0.3s ease-in;
 
       &:hover {
         color: $color-text-accent;
@@ -98,7 +98,7 @@
       border-radius: 50%;
       background-color: $color-background-default;
       color: $color-text-accent;
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in;
 
       a {
         width: 100%;
