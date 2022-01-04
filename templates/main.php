@@ -76,7 +76,7 @@
           <a class="banner__link" href="/">
             <div class="banner__img"><img src="img/banner/3.png" alt="banner-3" class="img-responsive"></div>
             <div class="s-desc">
-              <div class="banner__title">Школьные <br/> аксессуары</div>
+              <div class="banner__title">Школьные <br /> аксессуары</div>
               <div class="banner__desc">Начиная с 49&#8381;</div>
             </div>
           </a>
@@ -104,6 +104,55 @@
           </a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="goods__header">
+      <h2 class="goods__header-title">Товары</h2>
+
+      <div class="goods__header-search">
+        <input type="text" name="search" value="" placeholder="Поиск по магазину">
+        <button type="button" class="goods__header-search-btn"><i class="fas fa-search"></i></button>
+      </div>
+
+      <ul class="goods__header-list">
+        <li class="active">
+          <a href="#all">
+            Все
+          </a>
+        </li>
+        <li>
+          <a href="#discounts">
+            Скидки
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="goods">
+      <?php foreach ($goods as $item) : ?>
+        <div class="goods__item">
+          <div class="goods__item-image-block">
+            <a class="goods__item-link" href="/">
+              <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png">
+            </a>
+          </div>
+          <div class="goods__item-content">
+            <div class="goods__item-title">
+              <?= $item['title'] ?>
+            </div>
+            <div class="goods__item-footer">
+              <div class="goods__item-price">
+                <?= $item['price'] ?>&#8381;
+              </div>
+              <button type="button" class="goods__item-btn" onclick="ajaxAdd($(this),50);">
+                Купить
+              </button>
+            </div>
+          </div>
+        </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </main>

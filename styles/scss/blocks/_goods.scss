@@ -1,0 +1,156 @@
+.goods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+
+  margin-top: 22px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  &__header-title {
+    text-transform: uppercase;
+  }
+
+  &__header-list {
+    display: flex;
+
+    li {
+      color: #333;
+      font-weight: 700;
+      cursor: default;
+
+      a {
+        transition: color 0.3s ease-in;
+
+        &:hover {
+          cursor: pointer;
+          color: $color-text-accent;
+        }
+      }
+    }
+
+    li.active a {
+      color: $color-text-accent;
+
+      &:hover {
+        cursor: default;
+      }
+    }
+
+    li + li {
+      margin-left: 60px;
+    }
+  }
+
+  &__header-search {
+    position: relative;
+    width: 500px;
+
+    input[type="text"] {
+      color: #333;
+      display: inline-block;
+      font-family: open sans, sans-serif;
+      width: 100%;
+      font-weight: 400;
+      height: 40px;
+      padding: 11px 30px 11px 15px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 0;
+      box-shadow: none;
+
+      transition: 0.3s ease-in;
+
+      &:focus {
+        outline: none;
+        box-shadow: 1px 1px 10px rgba($color-shadow-accent, 0.8);
+      }
+    }
+  }
+
+  &__header-search-btn {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    font-size: 18px;
+    line-height: 38px;
+    height: 40px;
+    width: 30px;
+    text-align: center;
+    right: 0;
+    color: $color-text-accent;
+    margin-right: 5px;
+
+    transition: 0.3s color ease-in;
+
+    &:hover {
+      color: $color-text-default;
+    }
+  }
+
+  &__item-image-block {
+    border: 1px solid #e0e0e0;
+
+    &:hover {
+      img {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__item-img {
+    transition: opacity 0.3s ease-in;
+  }
+
+  &__item-content {
+    margin-top: 17px;
+  }
+
+  &__item-title {
+    color: #777;
+  }
+
+  &__item-footer {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  &__item-btn {
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 800;
+    transition: 0.5s color ease;
+
+    &:before {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      content: "";
+      display: inline-block;
+      background: #000;
+      transition: 0.5s all ease;
+    }
+
+    &:hover {
+      color: #97cf1f;
+
+      &::before {
+        background-color: #97cf1f;
+        left: 50%;
+        width: 0;
+      }
+    }
+  }
+}
