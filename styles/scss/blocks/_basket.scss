@@ -79,6 +79,10 @@
     justify-content: space-between;
     align-items: center;
 
+    h3 span {
+      color: $color-text-accent;
+    }
+
     .btn-primary {
       margin-top: 0;
     }

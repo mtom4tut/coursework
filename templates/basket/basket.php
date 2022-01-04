@@ -6,6 +6,10 @@ include_once("./config/init.php");
 include_once("./functions/helpers.php");
 
 $total_price = 0;
+foreach ($goods as $item) {
+  $total_price += $item['price'] * $item['number'];
+}
+
 ?>
 
 <div class="container">
@@ -29,7 +33,7 @@ $total_price = 0;
           <div class="basket__item-right">
             <div class="basket__item-title">
               <span><?= $item['title'] ?></span>
-              <button class="btn-remove" type="button" data-id="<?= $item['id'] ?>"><i class="fas fa-times"></i></button>
+              <button class="basket__item-btn-remove btn-remove" type="button" data-id="<?= $item['id'] ?>"><i class="fas fa-times"></i></button>
             </div>
             <div class="basket__item-price">Цена: <span><?= $item['price'] ?>&#8381;</span></div>
             <div class="basket__item-qty">
@@ -41,7 +45,7 @@ $total_price = 0;
       <?php endforeach; ?>
 
       <div class="basket__total">
-        <h3>Итоговая сумма: <?= $total_price ?>&#8381;</h3>
+        <h3><span>Итоговая сумма:</span> <?= $total_price ?>&#8381;</h3>
         <button type="button" class="btn-primary">Оформить заказ</button>
       </div>
     <?php endif; ?>

@@ -829,6 +829,10 @@ ol, ul {
           align-items: center;
 }
 
+.basket__total h3 span {
+  color: #97cf1f;
+}
+
 .basket__total .btn-primary {
   margin-top: 0;
 }

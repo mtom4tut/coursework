@@ -33,4 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log(data);
     });
   })
+
+  $('.basket__item-btn-remove').on('click', (e) => {
+    const target = e.target;
+
+    let id = target.parentElement.dataset.id;
+    $.post('templates/basket/basket_remove.php', {id}, function(data) {
+      window.location.reload();
+      // console.log(data);
+    });
+  })
 });
