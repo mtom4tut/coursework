@@ -21,4 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log(data);
     });
   })
+
+  $('.basket__item-input-qty').on('click', (e) => {
+    const target = e.target;
+
+    let id = target.dataset.id;
+    let value = target.value;
+
+    $.post('templates/basket/basket_change_num.php', {id, value}, function(data) {
+      window.location.reload();
+      // console.log(data);
+    });
+  })
 });

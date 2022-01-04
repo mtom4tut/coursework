@@ -5,6 +5,8 @@ include_once("./config/init.php");
 // Подключение функций
 include_once("./functions/helpers.php");
 
+unset($_SESSION['basket']); // удаление сессии
+
 if (isset($_SESSION['userMail'])) {
   header("Location: index.php"); // переадресация
   exit();

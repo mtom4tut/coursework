@@ -161,9 +161,13 @@ function is_correct_length($name, $min, $max)
  */
 function isset_in_array($name, $arr)
 {
+  $index = 0;
   foreach ($arr as $value) {
     if (in_array($name, $value)) {
-      return true;
+      return $index;
     }
+    $index++;
   }
+
+  return -1;
 }

@@ -34,7 +34,7 @@ $total_price = 0;
             <div class="basket__item-price">Цена: <span><?= $item['price'] ?>&#8381;</span></div>
             <div class="basket__item-qty">
               Количество:
-              <input type="number" name="qty" id="qty" min="1" max="20" value="<?=$item['number']?>">
+              <input type="number" name="qty" class="basket__item-input-qty" min="1" max="20" data-id="<?= $item['id'] ?>" value="<?=$item['number']?>">
             </div>
           </div>
         </div>
