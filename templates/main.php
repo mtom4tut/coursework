@@ -135,7 +135,7 @@
         <div class="goods__item">
           <div class="goods__item-image-block">
             <a class="goods__item-link" href="/">
-              <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png">
+              <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png" alt="img">
             </a>
           </div>
           <div class="goods__item-content">
@@ -146,7 +146,7 @@
               <div class="goods__item-price">
                 <?= $item['price'] ?>&#8381;
               </div>
-              <button type="button" class="goods__item-btn" onclick="ajaxAdd($(this),50);">
+              <button type="button" class="goods__item-btn" data-id="<?=$item['id']?>" data-title="<?=$item['title']?>" data-price="<?=$item['price']?>" data-description="<?=$item['description']?>">
                 Купить
               </button>
             </div>

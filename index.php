@@ -16,7 +16,7 @@ $main = include_template("main.php", ["goods" => $goods]); // шаблон ос�
 $layoutArr = [
   "user" => $_SESSION['user'] ?? "", // Пользователь
   "title" => "LetterHead", // Заголовок страницы
-  "main" => $main // main страницы
+  "main" => $main, // main страницы
 ];
 
 print(include_template("layout.php", $layoutArr)); // шаблонизация и вывод layout

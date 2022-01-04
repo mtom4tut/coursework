@@ -116,7 +116,7 @@ CREATE TABLE by_price (
 CREATE TABLE shopping_cart (
   id_user int(10) NOT NULL,                                 -- id пользователя
   id_good int(10) NOT NULL,                                 -- id товара
-  number int(2) NOT NULL,                                   -- количество
+  number int(2) NOT NULL DEFAULT 1,                         -- количество
   FOREIGN KEY (id_user) REFERENCES users(id),
   FOREIGN KEY (id_good) REFERENCES goods(id)
 );

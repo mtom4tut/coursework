@@ -83,31 +83,28 @@
     position: relative;
     transition: color 0.3s ease-in;
 
-    &::before {
-      content: '0';
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 17px;
-      height: 17px;
-      background-color: $color-background-accent;
-      border-radius: 50%;
-
-      position: absolute;
-      top: -12px;
-      left: 7px;
-      font-size: 10px;
-
-      transition: background-color 0.3s ease-in, color 0.3s ease-in;
-    }
-
     &:hover {
-      color: $color-text-accent;
-
-      &::before {
+      .header__bottom-basket-num {
         color: $color-text-primary;
         background-color: $color-background-primary;
       }
     }
+  }
+
+  &__bottom-basket-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 17px;
+    height: 17px;
+    background-color: $color-background-accent;
+    border-radius: 50%;
+
+    position: absolute;
+    top: -12px;
+    left: 7px;
+    font-size: 10px;
+
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
   }
 }

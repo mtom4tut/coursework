@@ -19,3 +19,11 @@
     background-color: $color-background-primary;
   }
 }
+
+.btn-remove {
+  transition: color 0.3s ease-in;
+
+  &:hover {
+    color: $color-text-accent;
+  }
+}

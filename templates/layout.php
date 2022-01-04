@@ -1,6 +1,16 @@
 <?php
 // Подключение бд
-include_once("./config/init.php");
+$link = mysqli_connect("localhost", "root", "root", "coursework"); 
+
+// Получение всех товаров корзины
+$basket_count = "0";
+
+if (isset($_SESSION['user'])) {
+  $sql = "SELECT COUNT(*) from shopping_cart where id_user = ?;";
+  $basket_count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+} elseif (isset($_SESSION['basket'])) {
+  $basket_count = count($_SESSION['basket']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,10 +80,11 @@ include_once("./config/init.php");
             </li>
           </ul>
 
-          <div class="header__bottom-basket">
+          <a href="/basket.php" class="header__bottom-basket">
+            <div class="header__bottom-basket-num"><?= $basket_count ?></div>
             <i class="fas fa-shopping-cart"></i>
             <b>Корзина</b>
-          </div>
+          </a>
         </nav>
       </div>
     </div>
@@ -154,5 +165,4 @@ include_once("./config/init.php");
   <script src='/js/flatpickr.js'></script>
   <script src="/js/script.js?ver=1"></script>
 </body>
-
 </html>

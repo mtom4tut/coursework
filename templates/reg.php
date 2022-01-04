@@ -5,7 +5,6 @@
     <li><span>Регистрация</span></li>
   </ul>
 
-
   <main class="main reg">
     <h2 class="main__heading">РЕГИСТРАЦИЯ</h2>
     <p class="main__info">Если Вы уже зарегистрированы, перейдите на страницу <a href="/authorization.php">авторизации</a>.</p>
