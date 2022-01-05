@@ -5,6 +5,9 @@ include_once("./config/init.php");
 // Подключение функций
 include_once("./functions/helpers.php");
 
+// Подключение библиотеки
+include_once("./library/phpqrcode/qrlib.php");
+
 if (isset($_SESSION['user'])) {
   header("Location: index.php"); // переадресация
   exit();
@@ -82,15 +85,26 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
     $res = db_insert_data($link, $sql, $data);
 
     if ($res) {
-      // получаем id пользователя
-      $sql = "SELECT id FROM users WHERE mail = ?";
-      $userID = db_fetch_data($link, $sql, [$_POST['email']])[0]["id"];
-
       $_SESSION['user'] = [
-        "id" => $userID,
+        "id" => $res,
         "mail" => $_POST['email'],
         "name" => trim(strip_tags($_POST['name']))
       ];
+
+      // создание qr карты
+      $text = "user=" . $res . ";";
+      $text .= "email=" . $_POST['email'] . ";";
+      $path = "./img/qr/" . $res . ".png";
+
+      QRcode::png($text, $path, "H");
+
+      // создание номера карты
+      $card = str_pad($_SESSION['user']['id'], 16, "0", STR_PAD_LEFT);
+
+      // добавление карты
+      $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?, qr = ?";
+      $data = [$_SESSION['user']['id'], $card, $path];
+      $res = db_insert_data($link, $sql, $data);
 
       header("Location: index.php"); // переадресация
       exit();
