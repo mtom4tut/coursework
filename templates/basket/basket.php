@@ -6,10 +6,11 @@ include_once("./config/init.php");
 include_once("./functions/helpers.php");
 
 $total_price = 0;
-foreach ($goods as $item) {
-  $total_price += $item['price'] * $item['number'];
+if ($goods !== "") {
+  foreach ($goods as $item) {
+    $total_price += $item['price'] * $item['number'];
+  }
 }
-
 ?>
 
 <div class="container">

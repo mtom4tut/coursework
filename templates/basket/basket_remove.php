@@ -10,7 +10,6 @@ if (isset($_SESSION['user'])) {
   $data = [$_SESSION['user']['id'], $_POST['id']];
   $res = db_insert_data($link, $sql, $data);
 } else {
-
   $index = isset_in_array($_POST['id'], $_SESSION['basket']);
   unset($_SESSION['basket'][$index]);
 }

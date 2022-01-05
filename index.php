@@ -7,7 +7,13 @@ include_once("./functions/helpers.php");
 
 // Получение всех товаров из бд
 $sql = "SELECT id, title, price, description FROM goods";
-$goods = db_fetch_data($link, $sql); // получить результат выполнения подготовленного выражения
+if (isset($_GET['search']) && $_GET['search'] !== "") {
+  $sql .= " where MATCH(title) AGAINST(? IN BOOLEAN MODE)";
+  $goods = db_fetch_data($link, $sql, [$_GET['search']]);
+} else {
+  $goods = db_fetch_data($link, $sql);
+}
+
 // шаблонизация main.php
 $main = include_template("main.php", ["goods" => $goods]); // шаблон основной страницы
 

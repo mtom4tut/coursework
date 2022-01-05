@@ -7,7 +7,8 @@ CREATE TABLE goods (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,           -- id товара
   title varchar(60) NOT NULL,                               -- заголовок товара
   price int(11) NOT NULL,                                   -- цена товара
-  description text NOT NULL                                 -- описание товара
+  description text NOT NULL,                                -- описание товара
+  FULLTEXT (title)
 );
 
 -- БД пользователей
