@@ -36,7 +36,6 @@ CREATE TABLE bonus_cards (
   сard_number char(16) NOT NULL UNIQUE,                     -- номер карты
   date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,         -- дата регистрации
   balance int(5) NOT NULL DEFAULT 0,                        -- количество бонусов
-  qr varchar(40) NOT NULL                                   -- qr код
   FOREIGN KEY (id_user) REFERENCES users(id)
 );
 

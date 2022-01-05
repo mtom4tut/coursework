@@ -102,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
       $card = str_pad($_SESSION['user']['id'], 16, "0", STR_PAD_LEFT);
 
       // добавление карты
-      $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?, qr = ?";
-      $data = [$_SESSION['user']['id'], $card, $path];
+      $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?";
+      $data = [$_SESSION['user']['id'], $card];
       $res = db_insert_data($link, $sql, $data);
 
       header("Location: index.php"); // переадресация

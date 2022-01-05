@@ -49,7 +49,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
   }
 
   &__bottom-nav {
@@ -106,5 +106,46 @@
     font-size: 10px;
 
     transition: background-color 0.3s ease-in, color 0.3s ease-in;
+  }
+
+  &__top-right-bonus {
+    position: relative;
+    transition: color 0.3s ease-in;
+
+    &:hover {
+      color: $color-text-default;
+
+      .header__top-right-bonus-card {
+        z-index: 1000;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__top-right-bonus-card {
+    opacity: 0;
+    position: absolute;
+    top: 29px;
+    right: 0;
+    z-index: -1000;
+
+    width: 200px;
+    background-color: $color-background-default;
+    transition: opacity 0.3s ease-in;
+
+    & > img {
+      width: 100%;
+    }
+
+    & > span {
+      position: relative;
+      z-index: 100;
+      display: inline-block;
+      width: 100%;
+      color: $color-text-default;
+      font-size: 18px;
+      text-align: center;
+      padding-bottom: 5px;
+    }
   }
 }

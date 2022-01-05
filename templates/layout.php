@@ -13,7 +13,11 @@ if (isset($_SESSION['user'])) {
 }
 
 // Получение бонусов пользователя
-$bonus_count = 0;
+if (isset($_SESSION['user'])) {
+  $sql = "SELECT сard_number, balance from bonus_cards where id_user = ?";
+  $bonus_cards = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +57,14 @@ $bonus_count = 0;
             <a href="/register.php">Регистрация</a>
             <a href="/authorization.php">Вход</a>
           <?php else : ?>
-            <span><b>Ваши бонусы: </b> <?=$bonus_count?></span>
+            <span><b>Ваши бонусы: </b> <?=$bonus_cards['balance']?></span>
+            <span class="header__top-right-bonus">
+              <b>Бонусная карта</b>
+              <div class="header__top-right-bonus-card">
+                <img src="./img/qr/<?=$_SESSION['user']['id']?>.png" alt="">
+                <span><?=chunk_split($bonus_cards['сard_number'], 4, ' ')?></span>
+              </div>
+            </span>
             <a href="/vip_user.php">Стать VIP пользователем?</a>
             <a href="/logout.php">Выход</a>
           <?php endif; ?>

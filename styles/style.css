@@ -116,7 +116,7 @@ ol, ul {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .header__bottom-nav {
@@ -184,6 +184,48 @@ ol, ul {
   font-size: 10px;
   -webkit-transition: background-color 0.3s ease-in, color 0.3s ease-in;
   transition: background-color 0.3s ease-in, color 0.3s ease-in;
+}
+
+.header__top-right-bonus {
+  position: relative;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
+}
+
+.header__top-right-bonus:hover {
+  color: #000;
+}
+
+.header__top-right-bonus:hover .header__top-right-bonus-card {
+  z-index: 1000;
+  opacity: 1;
+}
+
+.header__top-right-bonus-card {
+  opacity: 0;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  z-index: -1000;
+  width: 200px;
+  background-color: #fff;
+  -webkit-transition: opacity 0.3s ease-in;
+  transition: opacity 0.3s ease-in;
+}
+
+.header__top-right-bonus-card > img {
+  width: 100%;
+}
+
+.header__top-right-bonus-card > span {
+  position: relative;
+  z-index: 100;
+  display: inline-block;
+  width: 100%;
+  color: #000;
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 5px;
 }
 
 .btn-primary, .form__submit .btn-primary {
