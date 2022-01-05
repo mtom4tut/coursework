@@ -47,7 +47,7 @@ if ($goods !== "") {
 
       <div class="basket__total">
         <h3><span>Итоговая сумма:</span> <?= $total_price ?>&#8381;</h3>
-        <button type="button" class="btn-primary">Оформить заказ</button>
+        <a href="basket_buy.php" class="btn-primary">Оформить заказ</a>
       </div>
     <?php endif; ?>
   </div>

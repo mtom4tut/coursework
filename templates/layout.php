@@ -1,16 +1,19 @@
 <?php
 // Подключение бд
-$link = mysqli_connect("localhost", "root", "root", "coursework"); 
+$link = mysqli_connect("localhost", "root", "root", "coursework");
 
 // Получение всех товаров корзины
-$basket_count = "0";
+$basket_count = 0;
 
 if (isset($_SESSION['user'])) {
-  $sql = "SELECT COUNT(*) from shopping_cart where id_user = ?;";
+  $sql = "SELECT COUNT(*) from shopping_cart where id_user = ?";
   $basket_count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
 } elseif (isset($_SESSION['basket'])) {
   $basket_count = count($_SESSION['basket']);
 }
+
+// Получение бонусов пользователя
+$bonus_count = 0;
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +53,8 @@ if (isset($_SESSION['user'])) {
             <a href="/register.php">Регистрация</a>
             <a href="/authorization.php">Вход</a>
           <?php else : ?>
+            <span><b>Ваши бонусы: </b> <?=$bonus_count?></span>
+            <a href="/vip_user.php">Стать VIP пользователем?</a>
             <a href="/logout.php">Выход</a>
           <?php endif; ?>
         </div>

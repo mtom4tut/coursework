@@ -203,6 +203,7 @@ ol, ul {
 }
 
 .btn-primary:hover, .form__submit .btn-primary:hover {
+  cursor: pointer;
   background-color: #000;
 }
 
@@ -756,7 +757,7 @@ ol, ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  max-height: 300px;
+  max-height: 250px;
   padding: 0 20px;
 }
 

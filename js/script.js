@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
   flatpickr("#date", {
     dateFormat: "Y-m-d",
     locale: "ru",
-    maxDate: new Date()
+    maxDate: new Date(),
   });
 
-  $('.goods__item-btn').on('click', (e) => {
+  $(".goods__item-btn").on("click", (e) => {
     const target = e.target;
 
     let id = target.dataset.id;
@@ -16,31 +16,39 @@ document.addEventListener("DOMContentLoaded", () => {
     let price = target.dataset.price;
     let description = target.dataset.description;
 
-    $.post('templates/basket/basket_add.php', {id, title, price, description}, function(data) {
-      window.location.reload();
-      // console.log(data);
-    });
-  })
+    $.post(
+      "templates/basket/basket_add.php",
+      { id, title, price, description },
+      function (data) {
+        window.location.reload();
+        // console.log(data);
+      }
+    );
+  });
 
-  $('.basket__item-input-qty').on('click', (e) => {
+  $(".basket__item-input-qty").on("click", (e) => {
     const target = e.target;
 
     let id = target.dataset.id;
     let value = target.value;
 
-    $.post('templates/basket/basket_change_num.php', {id, value}, function(data) {
-      window.location.reload();
-      // console.log(data);
-    });
-  })
+    $.post(
+      "templates/basket/basket_change_num.php",
+      { id, value },
+      function (data) {
+        window.location.reload();
+        // console.log(data);
+      }
+    );
+  });
 
-  $('.basket__item-btn-remove').on('click', (e) => {
+  $(".basket__item-btn-remove").on("click", (e) => {
     const target = e.target;
 
     let id = target.parentElement.dataset.id;
-    $.post('templates/basket/basket_remove.php', {id}, function(data) {
+    $.post("templates/basket/basket_remove.php", { id }, function (data) {
       window.location.reload();
       // console.log(data);
     });
-  })
+  });
 });

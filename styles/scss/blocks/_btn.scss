@@ -16,6 +16,7 @@
   transition: background-color 0.3s ease-in;
 
   &:hover {
+    cursor: pointer;
     background-color: $color-background-primary;
   }
 }
