@@ -280,6 +280,22 @@ ol, ul {
   color: #777;
 }
 
+.main.buy h1 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 54px;
+  color: #777;
+}
+
+.main.buy span {
+  display: block;
+  color: #97cf1f;
+}
+
+.main.buy span:last-child {
+  margin-top: 30px;
+}
+
 .swiper-slider .slide-desc {
   text-align: center;
   display: inline-block;

@@ -60,3 +60,21 @@
     }
   }
 }
+
+.main.buy {
+  h1 {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 54px;
+    color: #777;
+  }
+
+  span {
+    display: block;
+    color: $color-text-accent;
+
+    &:last-child {
+      margin-top: 30px;
+    }
+  }
+}

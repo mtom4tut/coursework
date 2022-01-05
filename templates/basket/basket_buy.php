@@ -1,29 +1,14 @@
-<?php
-// Подключение бд
-include_once("./config/init.php");
-
-// Подключение функций
-include_once("./functions/helpers.php");
-
-// Получение всех товаров корзины
-$goods = "";
-
-if (isset($_SESSION['user'])) {
-  $sql = "SELECT g.id, g.title, g.price, g.description, sc.number from goods g join shopping_cart sc on g.id = sc.id_good WHERE sc.id_user = ?";
-  $goods = db_fetch_data($link, $sql, [$_SESSION['user']['id']]);
-}
-elseif (isset($_SESSION['basket'])) {
-  $goods = $_SESSION['basket'];
-}
-
-// шаблонизация main.php
-$main = include_template("basket/basket.php", ["goods" => $goods]); // шаблон основной страницы
-
-// Данные для layout.php
-$layoutArr = [
-  "user" => $_SESSION['user'] ?? "", // Пользователь
-  "title" => "LetterHead - Корзина", // Заголовок страницы
-  "main" => $main // main страницы
-];
-
-print(include_template("layout.php", $layoutArr)); // шаблонизация и вывод layout
+<div class="container">
+<ul class="breadcrumb">
+    <li><a href="/"><i class="fa fa-home"></i></a> <i class="fas fa-chevron-right"></i></li>
+    <li><a href="/">Главная</a> <i class="fas fa-chevron-right"></i> </li>
+    <li><span>Оформление заказа</span></li>
+  </ul>
+  <main class="main buy">
+    <h1>
+      <span>Заказ успешно сформирован!</span>
+      В скорем времени вам на почту придет номер по которому можно будет остледить заказ...
+      <span>Спасибо за покупку!</span>
+  </h1>
+  </main>
+</div>
