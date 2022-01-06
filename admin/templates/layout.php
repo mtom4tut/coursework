@@ -30,10 +30,7 @@
   <?= $main ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="../../js/swmin.js"></script>
-  <script src="../../js/swinit.js"></script>
   <script src='../../js/flatpickr.js'></script>
-  <script src="../../js/script.js?ver=1"></script>
+  <script src="/admin/js/script.js"></script>
 </body>
-
 </html>

@@ -35,7 +35,7 @@
 
           <input class="form__input <?php if (isset($errors["password"])) {
                                       print("form__input--error");
-                                    } ?>" type="password" name="password" id="password" value="" placeholder="Введите пароль">
+                                    } ?>" type="password" name="password" id="password" value="" placeholder="Введите пароль" autocomplete="on">
 
           <?php if (isset($errors["password"])) : ?>
             <p class="form__message"> <?= $errors["password"] ?> </p>
