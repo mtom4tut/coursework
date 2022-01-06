@@ -1,0 +1,14 @@
+.main.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .well h2 {
+    margin-bottom: 15px;
+  }
+
+  .well__text {
+    margin-bottom: 3px;
+  }
+}
