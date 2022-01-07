@@ -12,3 +12,26 @@
     margin-bottom: 3px;
   }
 }
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  height: calc(100% - 58px);
+}
+
+.main {
+  padding: 30px;
+
+  h1 {
+    color: $color-text-accent;
+  }
+
+  &__admin-list {
+    margin-top: 15px;
+    list-style: inside;
+
+    li + li {
+      margin-top: 8px;
+    }
+  }
+}

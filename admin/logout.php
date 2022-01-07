@@ -3,5 +3,5 @@ session_start();
 
 unset($_SESSION['admin']); // удаление сессии
 
-header("Location: index.php"); // переадресация
+header("Location: authorization.php"); // переадресация
 exit();

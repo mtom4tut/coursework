@@ -154,3 +154,14 @@
     }
   }
 }
+
+.goods-no-grid {
+  grid-template-columns: 1fr;
+
+  .goods__none {
+    font-size: 34px;
+    text-align: center;
+    color: #777;
+    margin-top: 30px;
+  }
+}

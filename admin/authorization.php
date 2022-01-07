@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
       "password" => "admin"
     ];
 
-    header("Location: index.php"); // переадресация
+    header("Location: /admin/stock.php"); // переадресация
     exit();
   }
 } else {

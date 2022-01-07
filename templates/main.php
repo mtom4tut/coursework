@@ -130,29 +130,33 @@
       </ul>
     </div>
 
-    <div class="goods">
-      <?php foreach ($goods as $item) : ?>
-        <div class="goods__item">
-          <div class="goods__item-image-block">
-            <a class="goods__item-link" href="/">
-              <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png" alt="img">
-            </a>
-          </div>
-          <div class="goods__item-content">
-            <div class="goods__item-title">
-              <?= $item['title'] ?>
+    <div class="goods <?= count($goods) === 0 ? 'goods-no-grid' : '' ?>">
+      <?php if (count($goods) === 0) : ?>
+        <div class="goods__none">По вашему запросу ничего не найдено...</div>
+      <?php else : ?>
+        <?php foreach ($goods as $item) : ?>
+          <div class="goods__item">
+            <div class="goods__item-image-block">
+              <a class="goods__item-link" href="/">
+                <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png" alt="img">
+              </a>
             </div>
-            <div class="goods__item-footer">
-              <div class="goods__item-price">
-                <?= $item['price'] ?>&#8381;
+            <div class="goods__item-content">
+              <div class="goods__item-title">
+                <?= $item['title'] ?>
               </div>
-              <button type="button" class="goods__item-btn" data-id="<?=$item['id']?>" data-title="<?=$item['title']?>" data-price="<?=$item['price']?>" data-description="<?=$item['description']?>">
-                Купить
-              </button>
+              <div class="goods__item-footer">
+                <div class="goods__item-price">
+                  <?= $item['price'] ?>&#8381;
+                </div>
+                <button type="button" class="goods__item-btn" data-id="<?= $item['id'] ?>" data-title="<?= $item['title'] ?>" data-price="<?= $item['price'] ?>" data-description="<?= $item['description'] ?>">
+                  Купить
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      <?php endforeach; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </main>

@@ -794,6 +794,18 @@ ol, ul {
   width: 0;
 }
 
+.goods-no-grid {
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.goods-no-grid .goods__none {
+  font-size: 34px;
+  text-align: center;
+  color: #777;
+  margin-top: 30px;
+}
+
 .basket__title {
   text-transform: uppercase;
   font-size: 34px;

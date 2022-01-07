@@ -17,20 +17,35 @@
 <body>
   <?php if (isset($_SESSION['admin'])) : ?>
     <header class="header">
-      header
+      <a href="/admin/">
+        <img src="../../img/logo.png" title="LetterHead" alt="LetterHead">
+      </a>
+      <a href="/admin/logout.php" class="header__link">Выйти из панели администратора</a>
     </header>
   <?php endif; ?>
 
   <?php if (isset($_SESSION['admin'])) : ?>
-    <aside class="header">
-      aside
-    </aside>
+    <div class="content">
+      <aside class="aside">
+        <nav class="aside__nav">
+          <ul>
+            <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/stock.php" ? 'active' : '' ?>">
+              <a class="aside__link" href="/admin/stock.php"><i class="fas fa-percent"></i> Скидки</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <main class="main">
+        <?= $main ?>
+      </main>
+    </div>
+  <?php else : ?>
+    <?= $main ?>
   <?php endif; ?>
-
-  <?= $main ?>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src='../../js/flatpickr.js'></script>
   <script src="/admin/js/script.js"></script>
 </body>
+
 </html>

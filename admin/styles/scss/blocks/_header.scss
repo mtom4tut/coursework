@@ -1,0 +1,15 @@
+.header {
+  color: $color-text-primary;
+  background-color: $color-background-accent;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__link {
+    transition: 0.3s color ease-in;
+    &:hover {
+      color: $color-text-default;
+    }
+  }
+}

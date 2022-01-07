@@ -7,7 +7,11 @@ include_once("./functions/helpers.php");
 
 // Получение всех товаров из бд
 $sql = "SELECT id, title, price, description FROM goods";
-if (isset($_GET['search']) && $_GET['search'] !== "") {
+if (isset($_GET['search'])) {
+  if ($_GET['search'] === "") {
+    header("Location: /"); // переадресация
+    exit();
+  }
   $sql .= " where MATCH(title) AGAINST(? IN BOOLEAN MODE)";
   $goods = db_fetch_data($link, $sql, [$_GET['search']]);
 } else {

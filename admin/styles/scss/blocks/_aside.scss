@@ -1,0 +1,39 @@
+.aside {
+  height: 100%;
+  padding: 30px;
+  border-right: 1px solid #777;
+
+  &__li {
+    border-radius: 5px;
+    padding: 15px 0 15px 10px;
+
+    & + & {
+      margin-top: 12px;
+    }
+
+    i {
+      color: $color-text-accent;
+      margin-right: 15px;
+    }
+
+    &.active {
+      border-left: 3px $color-border-accent solid;
+
+      .aside__link {
+        color: $color-text-default !important;
+        cursor: default !important;
+      }
+    }
+  }
+
+  &__link {
+    text-transform: uppercase;
+    font-weight: 700;
+
+    transition: 0.3s color ease-in;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+}
