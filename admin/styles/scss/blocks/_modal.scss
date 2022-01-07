@@ -1,0 +1,41 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  background-color: rgba($color-background-primary, 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    position: relative;
+    width: 600px;
+    padding: 40px;
+    background-color: $color-background-default;
+
+    border-radius: 20px;
+  }
+
+  &__close {
+    position: absolute;
+    top: 42px;
+    right: 40px;
+    font-size: 24px;
+
+    transition: color 0.3s ease-in;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+
+  &__title {
+    color: $color-text-accent;
+    margin-bottom: 24px;
+  }
+}

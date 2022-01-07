@@ -39,6 +39,24 @@
         <?= $main ?>
       </main>
     </div>
+
+    <?php if (isset($_GET['add']) || isset($_GET['update']) || $_SERVER['REQUEST_METHOD'] === "POST") : ?>
+      <div class="modal">
+        <div class="modal__item">
+          <a href="<?= $url ?>" class="modal__close"><i class="fas fa-times"></i></a>
+            <?php
+              if (isset($_GET['add']) || $_SERVER['REQUEST_METHOD'] === "POST") {
+                print($add);
+              }
+              elseif (isset($_GET['update']) || $_SERVER['REQUEST_METHOD'] === "POST") {
+                print($update);
+              } else {
+                print("Произошла ошибка...");
+              }
+            ?>
+        </div>
+      </div>
+    <?php endif; ?>
   <?php else : ?>
     <?= $main ?>
   <?php endif; ?>

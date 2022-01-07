@@ -86,6 +86,7 @@ ol, ul {
   color: #777;
   text-align: end;
   padding-right: 40px;
+  margin-bottom: 3px;
 }
 
 .form sup {
@@ -211,6 +212,36 @@ ol, ul {
   padding-bottom: 0;
 }
 
+.btn-primary, .form__submit .btn-primary {
+  outline: none;
+  border: none;
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 28px 15px;
+  color: #fff;
+  background-color: #97cf1f;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  border-radius: 3px;
+  -webkit-transition: background-color 0.3s ease-in;
+  transition: background-color 0.3s ease-in;
+}
+
+.btn-primary:hover, .form__submit .btn-primary:hover {
+  cursor: pointer;
+  background-color: #000;
+}
+
+.btn-remove {
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
+}
+
+.btn-remove:hover {
+  color: #97cf1f;
+}
+
 .main.auth {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -235,13 +266,13 @@ ol, ul {
 .content {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 3fr;
-      grid-template-columns: 1fr 3fr;
+  -ms-grid-columns: 1fr 3.5fr;
+      grid-template-columns: 1fr 3.5fr;
   height: calc(100% - 58px);
 }
 
 .main {
-  padding: 30px;
+  padding: 45px;
 }
 
 .main h1 {
@@ -255,6 +286,83 @@ ol, ul {
 
 .main__admin-list li + li {
   margin-top: 8px;
+}
+
+.main__search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  width: 700px;
+}
+
+.main__search input[type="text"],
+.main__search select {
+  color: #333;
+  display: inline-block;
+  font-family: open sans, sans-serif;
+  width: 100%;
+  font-weight: 400;
+  height: 40px;
+  padding: 11px 30px 11px 15px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+}
+
+.main__search input[type="text"]:focus,
+.main__search select:focus {
+  outline: none;
+  -webkit-box-shadow: 1px 1px 10px rgba(151, 207, 31, 0.8);
+          box-shadow: 1px 1px 10px rgba(151, 207, 31, 0.8);
+}
+
+.main__search select {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin-right: 4px;
+}
+
+.main__search-btn {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  font-size: 18px;
+  line-height: 38px;
+  height: 40px;
+  width: 30px;
+  text-align: center;
+  right: 0;
+  color: #97cf1f;
+  margin-right: 5px;
+  -webkit-transition: 0.3s color ease-in;
+  transition: 0.3s color ease-in;
+}
+
+.main__search-btn:hover {
+  color: #000;
+}
+
+.main__flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 40px;
+}
+
+.main__flex .btn-primary {
+  margin-top: 0;
 }
 
 .header {
@@ -319,5 +427,95 @@ ol, ul {
 
 .aside__link:hover {
   color: #97cf1f;
+}
+
+.table {
+  position: relative;
+}
+
+.table thead {
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.table thead th {
+  padding: 10px;
+  border-bottom: 3px solid #97cf1f;
+}
+
+.table thead th + th {
+  border-left: 2px solid #97cf1f;
+}
+
+.table tbody {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.table tbody td {
+  padding: 10px;
+  border-bottom: 3px solid #777;
+}
+
+.table tbody td + td {
+  border-left: 2px solid #777;
+}
+
+.table .btn-table {
+  -webkit-transition: 0.3s color ease-in;
+  transition: 0.3s color ease-in;
+}
+
+.table .btn-table:hover {
+  color: #97cf1f;
+}
+
+.table .btn-table + .btn-table {
+  margin-left: 15px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal__item {
+  position: relative;
+  width: 600px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 42px;
+  right: 40px;
+  font-size: 24px;
+  -webkit-transition: color 0.3s ease-in;
+  transition: color 0.3s ease-in;
+}
+
+.modal__close:hover {
+  color: #97cf1f;
+}
+
+.modal__title {
+  color: #97cf1f;
+  margin-bottom: 24px;
 }
 /*# sourceMappingURL=style.css.map */

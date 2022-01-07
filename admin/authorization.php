@@ -11,8 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
 
   $rules = [
     "email" => function () use ($link) {
-      $sql = "SELECT id FROM users WHERE mail = ?";
-
       if (empty($_POST["login"])) {
         return "Это поле должно быть заполнено";
       }
@@ -52,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
       "password" => "admin"
     ];
 
-    header("Location: /admin/stock.php"); // переадресация
+    header("Location: /admin/"); // переадресация
     exit();
   }
 } else {

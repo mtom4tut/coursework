@@ -1,0 +1,44 @@
+.table {
+  position: relative;
+
+  thead {
+    font-size: 14px;
+    background-color: $color-background-default;
+
+    th {
+      padding: 10px;
+      border-bottom: 3px solid $color-border-accent;
+    }
+
+    th + th {
+      border-left: 2px solid $color-border-accent;
+    }
+  }
+
+
+  tbody {
+    margin-top: 40px;
+    text-align: center;
+
+    td {
+      padding: 10px;
+      border-bottom: 3px solid #777;
+    }
+
+    td + td {
+      border-left: 2px solid #777;
+    }
+  }
+
+  .btn-table {
+    transition: 0.3s color ease-in;
+
+    &:hover {
+      color: $color-text-accent;
+    }
+  }
+
+  .btn-table + .btn-table {
+    margin-left: 15px;
+  }
+}

@@ -425,6 +425,7 @@ ol, ul {
   color: #777;
   text-align: end;
   padding-right: 40px;
+  margin-bottom: 3px;
 }
 
 .form sup {

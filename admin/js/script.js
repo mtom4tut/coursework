@@ -8,4 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
     maxDate: new Date(),
   });
 
+   // формат даты в календаре
+   flatpickr("#dateEnd", {
+    dateFormat: "Y-m-d",
+    locale: "ru",
+    minDate: new Date(),
+  });
 });

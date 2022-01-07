@@ -35,7 +35,7 @@ CREATE TABLE bonus_cards (
   id_user int(11) NOT NULL,                                 -- id пользователя
   сard_number char(16) NOT NULL UNIQUE,                     -- номер карты
   date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,         -- дата регистрации
-  balance int(5) NOT NULL DEFAULT 0,                        -- количество бонусов
+  balance double NOT NULL DEFAULT 0,                        -- количество бонусов
   FOREIGN KEY (id_user) REFERENCES users(id)
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE bonus_cards (
 CREATE TABLE stock (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,           -- id акции
   id_good int(11) NOT NULL,                                 -- id товара
-  discount int(4) NOT NULL DEFAULT 0,                       -- размер скидки
+  discount int(2) NOT NULL DEFAULT 0,                       -- размер скидки
   bonuses int(4) NOT NULL DEFAULT 0,                        -- размер бонусов
   data_start DATE NOT NULL DEFAULT CURRENT_DATE,            -- дата начала акции
   data_end DATE NOT NULL,                                   -- дата окончания акции
@@ -107,7 +107,8 @@ CREATE TABLE premium_users (
 CREATE TABLE by_price (
   id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,           -- id акции
   id_good int(10) NOT NULL,                                 -- id товара
-  number int(2) NOT NULL,                                   -- количество
+  number_1 int(2) NOT NULL,                                 -- количество 1
+  number_2 int(2) NOT NULL,                                 -- количество 2
   data_start DATE NOT NULL,                                 -- дата начала акции
   data_end DATE NOT NULL,                                   -- дата окончания акции
   FOREIGN KEY (id_good) REFERENCES goods(id)

@@ -15,12 +15,12 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 3.5fr;
   height: calc(100% - 58px);
 }
 
 .main {
-  padding: 30px;
+  padding: 45px;
 
   h1 {
     color: $color-text-accent;
@@ -32,6 +32,70 @@
 
     li + li {
       margin-top: 8px;
+    }
+  }
+
+  &__search {
+    display: flex;
+    position: relative;
+    width: 700px;
+
+    input[type="text"],
+    select {
+      color: #333;
+      display: inline-block;
+      font-family: open sans, sans-serif;
+      width: 100%;
+      font-weight: 400;
+      height: 40px;
+      padding: 11px 30px 11px 15px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 0;
+      box-shadow: none;
+
+      transition: 0.3s ease-in;
+
+      &:focus {
+        outline: none;
+        box-shadow: 1px 1px 10px rgba($color-shadow-accent, 0.8);
+      }
+    }
+
+    select {
+      width: min-content;
+      margin-right: 4px;
+    }
+  }
+
+  &__search-btn {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    font-size: 18px;
+    line-height: 38px;
+    height: 40px;
+    width: 30px;
+    text-align: center;
+    right: 0;
+    color: $color-text-accent;
+    margin-right: 5px;
+
+    transition: 0.3s color ease-in;
+
+    &:hover {
+      color: $color-text-default;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+
+    .btn-primary {
+      margin-top: 0;
     }
   }
 }
