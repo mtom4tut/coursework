@@ -17,7 +17,8 @@ $data = db_fetch_data($link, $sql);
 // шаблонизация main.php
 $main = include_template("stock/stock.php", ["data" => $data]); // шаблон основной страницы
 
-$add = include_template("stock/stock_add.php"); // шаблон основной страницы
+$add = include_template("stock/stock_form.php"); // шаблон добавления
+$update = include_template("stock/stock_update.php"); // шаблон изменения
 
 // проверка формы добавления записи
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { // если форма отправлена
@@ -59,6 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { //
         return "Размер бонусов должен быть больше 0 и меньше $price";
       }
     },
+
+    "date" => function () use ($link) {
+      if (!empty($_POST["dateStart"]) && $_POST["dateStart"] > $_POST["date"]) {
+        return "Дата завершения акции должна быть больше даты начала акции";
+      }
+    },
   ];
 
   // заполняем массив ошибками, если есть
@@ -80,12 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { //
 
   // есть ли в массиве ошибок, ошибки
   if (count($errors)) {
-    $add = include_template("stock/stock_add.php", ["errors" => $errors]);
+    $add = include_template("stock/stock_form.php", ["errors" => $errors]);
   } else {
     $discount = empty($_POST["discount"]) ? 0 : $_POST["discount"];
     $bonus = empty($_POST["bonus"]) ? 0 : $_POST["bonus"];
-    $sql = "INSERT INTO stock SET id_good = ?, discount = ?, bonuses = ?, data_end = ?, data_start = CURRENT_DATE";
-    $empty = db_fetch_data($link, $sql, [$_POST["id"], $discount, $bonus, $_POST["date"]]);
+    $dateStart = empty($_POST["dateStart"]) ? date("Y-m-d") : $_POST["dateStart"];
+    $sql = "INSERT INTO stock SET id_good = ?, discount = ?, bonuses = ?, data_end = ?, data_start = ?";
+    $empty = db_fetch_data($link, $sql, [$_POST["id"], $discount, $bonus, $_POST["date"], $dateStart]);
 
     header("Location: /admin/stock.php"); // переадресация
     exit();
@@ -105,7 +113,8 @@ $layoutArr = [
   "title" => "LetterHead - Кабинет администратора", // Заголовок страницы
   "main" => $main, // main страницы
   "url" => "/admin/stock.php",
-  "add" => $add
+  "add" => $add,
+  "update" => $update
 ];
 
 print(include_template("layout.php", $layoutArr)); // шаблонизация и вывод layout

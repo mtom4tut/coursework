@@ -42,12 +42,12 @@
           <td><?= $item['data_start'] ?></td>
           <td><?= $item['data_end'] ?></td>
           <td data-id="<?= $item['id'] ?>">
-            <button type="button" class="btn-table" title="Изменить запись">
+            <a href="/admin/stock.php?update=<?= $item['id'] ?>" type="button" class="btn-table" title="Изменить запись">
               <i class="fas fa-pencil-alt"></i>
-            </button>
-            <a href="/admin/stock.php?remove=<?=$item['id']?>" type="button" class="btn-table" title="Удалить запись">
+            </a>
+            <a href="/admin/stock.php?remove=<?= $item['id'] ?>" type="button" class="btn-table" title="Удалить запись">
               <i class="fas fa-times"></i>
-            </ф>
+              </ф>
           </td>
         </tr>
       <?php endforeach; ?>

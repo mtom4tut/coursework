@@ -38,6 +38,21 @@
   </div>
 
   <div class="form__group">
+    <label class="form__label" for="dateStart">Дата начала акции</label>
+
+    <input class="form__input form__input--date
+            <?php
+            if (isset($errors["dateStart"])) {
+              print("form__input--error");
+            }
+            ?>" type="text" name="dateStart" id="dateStart" value="<?= get_post_val("dateStart") ?>" placeholder="Введите дату в формате ГГГГ-ММ-ДД">
+
+    <?php if (isset($errors["dateStart"])) : ?>
+      <p class="form__message"> <?= $errors["dateStart"] ?> </p>
+    <?php endif; ?>
+  </div>
+
+  <div class="form__group">
     <label class="form__label" for="date">Дата окончания акции<sup>*</sup></label>
 
     <input class="form__input form__input--date
