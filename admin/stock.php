@@ -92,6 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { //
   }
 }
 
+// удаление записи
+if (isset($_GET['remove'])) {
+  $sql = "DELETE FROM stock WHERE id = ?";
+  $remove = db_fetch_data($link, $sql, [$_GET['remove']]);
+  header("Location: /admin/stock.php"); // переадресация
+  exit();
+}
+
 // Данные для layout.php
 $layoutArr = [
   "title" => "LetterHead - Кабинет администратора", // Заголовок страницы

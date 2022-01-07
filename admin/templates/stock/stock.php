@@ -45,9 +45,9 @@
             <button type="button" class="btn-table" title="Изменить запись">
               <i class="fas fa-pencil-alt"></i>
             </button>
-            <button type="button" class="btn-table" title="Удалить запись">
+            <a href="/admin/stock.php?remove=<?=$item['id']?>" type="button" class="btn-table" title="Удалить запись">
               <i class="fas fa-times"></i>
-            </button>
+            </ф>
           </td>
         </tr>
       <?php endforeach; ?>

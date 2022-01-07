@@ -14,7 +14,7 @@
   </div>
 
   <div class="form__group">
-    <label class="well__text form__label" for="discount">Скидка</label>
+    <label class="well__text form__label" for="discount">Скидка (в %)</label>
 
     <input class="form__input <?php if (isset($errors["discount"])) {
                                 print("form__input--error");
