@@ -32,7 +32,7 @@ if ($goods !== "") {
 
   <div class="basket">
     <h2 class="basket__title">Корзина товаров</h2>
-    <?php if ($goods === "") : ?>
+    <?php if ($goods === "" || count($goods) === 0) : ?>
       <p class="basket__none">Корзина пуста...</p>
     <?php else : ?>
       <?php foreach ($goods as $item) : ?>
@@ -76,7 +76,7 @@ if ($goods !== "") {
           <span>Итоговая сумма:</span> <?= $total_price ?>&#8381;
 
           <?php if ($total_bonus > 0) : ?>
-            <span>Бонусов за покупку:</span> <?= $total_bonus ?>&#8381;
+            <span>Бонусов за покупку:</span> <?= $total_bonus ?>
           <?php endif; ?>
         </h3>
         <a href="basket_buy.php" class="btn-primary">Оформить заказ</a>

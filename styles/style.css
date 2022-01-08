@@ -338,6 +338,36 @@ ol, ul {
   margin-top: 30px;
 }
 
+.main.buy .buy__info {
+  font-size: 28px;
+  color: #777;
+}
+
+.main.buy .buy__btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.main.buy .buy__btn .btn-primary + .btn-primary {
+  margin-left: 25px;
+}
+
+.main.buy .buy_price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.main.buy .buy_price span {
+  margin-top: 0;
+}
+
 .swiper-slider .slide-desc {
   text-align: center;
   display: inline-block;

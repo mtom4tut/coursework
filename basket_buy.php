@@ -20,6 +20,11 @@ if (isset($_SESSION['user'])) {
   $goods = $_SESSION['basket'];
 }
 
+if (count($goods) === 0 || !isset($_SESSION['buy'])) {
+  header("Location: /basket.php"); // переадресация
+  exit();
+}
+
 // сумма товаров
 $total_price = 0;
 if ($goods !== "") {
@@ -28,22 +33,28 @@ if ($goods !== "") {
   }
 }
 
-// добавление заказа
-$sql = "INSERT INTO orders SET id_user = ?, amount = ?";
-$data = [$_SESSION['user']['id'], $total_price];
-$id_order = db_insert_data($link, $sql, $data);
+// // добавление заказа
+// $sql = "INSERT INTO orders SET id_user = ?, amount = ?";
+// $data = [$_SESSION['user']['id'], $total_price];
+// $id_order = db_insert_data($link, $sql, $data);
 
-// добавление элементов заказа
-$sql = "INSERT INTO order_items SET id_order = ?, id_good = ?, quantity = ?";
-foreach ($goods as $item) {
-  $data = [$id_order, $item['id'], $item['number']];
-  $res = db_insert_data($link, $sql, $data);
-}
+// // добавление элементов заказа
+// $sql = "INSERT INTO order_items SET id_order = ?, id_good = ?, quantity = ?";
+// foreach ($goods as $item) {
+//   $data = [$id_order, $item['id'], $item['number']];
+//   $res = db_insert_data($link, $sql, $data);
+// }
 
-// очистка корзины
-$sql = "DELETE FROM shopping_cart WHERE id_user = ?";
-$data = [$_SESSION['user']['id']];
-$res = db_insert_data($link, $sql, $data);
+// // очистка корзины
+// $sql = "DELETE FROM shopping_cart WHERE id_user = ?";
+// $data = [$_SESSION['user']['id']];
+// $res = db_insert_data($link, $sql, $data);
+
+// if (isset($_SESSION['buy'])) {
+//   $sql = "UPDATE bonus_cards SET balance = balance + ? WHERE id_user = ?";
+//   $data = db_insert_data($link, $sql, [$_SESSION['buy']['bonus'], $_SESSION['user']['id']]);
+//   unset($_SESSION['buy']);
+// }
 
 // шаблонизация main.php
 $main = include_template("basket/basket_buy.php", ["link" => $link]); // шаблон основной страницы

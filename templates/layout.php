@@ -17,7 +17,6 @@ if (isset($_SESSION['user'])) {
   $sql = "SELECT сard_number, balance from bonus_cards where id_user = ?";
   $bonus_cards = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0];
 }
-
 ?>
 
 <!DOCTYPE html>

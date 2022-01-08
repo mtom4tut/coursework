@@ -77,4 +77,28 @@
       margin-top: 30px;
     }
   }
+
+  .buy__info {
+    font-size: 28px;
+    color: #777;
+  }
+
+  .buy__btn {
+    display: flex;
+    justify-content: center;
+
+    .btn-primary + .btn-primary {
+      margin-left: 25px;
+    }
+  }
+
+  .buy_price {
+    display: flex;
+    font-size: 24px;
+    margin-top: 20px;
+
+    span {
+      margin-top: 0;
+    }
+  }
 }
