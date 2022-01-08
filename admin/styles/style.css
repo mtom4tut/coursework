@@ -474,6 +474,11 @@ ol, ul {
   margin-left: 15px;
 }
 
+.table__none {
+  font-size: 42px;
+  color: #777;
+}
+
 .modal {
   position: fixed;
   top: 0;

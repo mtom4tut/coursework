@@ -14,6 +14,32 @@ if (!isset($_SESSION['admin'])) {
 $sql = "SELECT s.id, s.id_good, g.title, s.discount, s.bonuses, s.data_start, s.data_end FROM stock s JOIN goods g on s.id_good = g.id";
 $data = db_fetch_data($link, $sql);
 
+if (isset($_GET['select']) && isset($_GET['search']) && $_GET['search'] === "") {
+  header("Location: /admin/stock.php"); // переадресация
+  exit();
+}
+
+if (isset($_GET['select']) && isset($_GET['search'])) {
+  $select = ["s.id", "s.id_good", "g.title", "s.discount", "s.bonuses", "s.data_start", "s.data_end"];
+  $selectTrue = true;
+  foreach ($select as $item) {
+    if ($item === $_GET['select']) {
+      $selectTrue = false;
+      break;
+    }
+  }
+
+  if ($selectTrue) {
+    header("Location: /admin/stock.php"); // переадресация
+    exit();
+  }
+
+
+  $sql = "SELECT s.id, s.id_good, g.title, s.discount, s.bonuses, s.data_start, s.data_end FROM stock s JOIN goods g on s.id_good = g.id where ";
+  $sql .= $_GET['select'] . " = ?";
+  $data = db_fetch_data($link, $sql, [$_GET['search']]);
+}
+
 // шаблонизация main.php
 $main = include_template("stock/stock.php", ["data" => $data]); // шаблон основной страницы
 
@@ -27,8 +53,7 @@ if (isset($_GET['update'])) {
 }
 
 // проверка формы добавления записи
-if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || isset($_POST["updateRecording"])))
-{
+if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || isset($_POST["updateRecording"]))) {
   // если форма отправлена
   $required = ['id', 'date']; // массив обязательных полей
   $errors = []; // массив ошибок
