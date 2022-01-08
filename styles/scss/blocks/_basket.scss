@@ -46,12 +46,17 @@
     justify-content: space-between;
   }
 
-  &__item-price {
+  &__item-price, &__item-bonus {
     margin-top: 20px;
     color: $color-border-accent;
     font-weight: 700;
     span {
       color: $color-text-default;
+      &:nth-child(2) {
+        color: #777;
+        text-decoration: line-through;
+        margin-left: 10px;
+      }
     }
   }
 
@@ -81,6 +86,10 @@
 
     h3 span {
       color: $color-text-accent;
+
+      &:nth-child(2) {
+        margin-left: 15px;
+      }
     }
 
     .btn-primary {

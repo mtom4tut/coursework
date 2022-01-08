@@ -1,3 +1,11 @@
+<?php
+if(isset($_SESSION['buy'])) {
+  $sql = "UPDATE bonus_cards SET balance = balance + ? WHERE id_user = ?";
+  $data = db_insert_data($link, $sql, [$_SESSION['buy']['bonus'], $_SESSION['user']['id']]);
+  unset($_SESSION['buy']);
+}
+?>
+
 <div class="container">
 <ul class="breadcrumb">
     <li><a href="/"><i class="fa fa-home"></i></a> <i class="fas fa-chevron-right"></i></li>

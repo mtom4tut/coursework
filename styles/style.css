@@ -860,14 +860,20 @@ ol, ul {
           justify-content: space-between;
 }
 
-.basket__item-price {
+.basket__item-price, .basket__item-bonus {
   margin-top: 20px;
   color: #97cf1f;
   font-weight: 700;
 }
 
-.basket__item-price span {
+.basket__item-price span, .basket__item-bonus span {
   color: #000;
+}
+
+.basket__item-price span:nth-child(2), .basket__item-bonus span:nth-child(2) {
+  color: #777;
+  text-decoration: line-through;
+  margin-left: 10px;
 }
 
 .basket__item-qty {
@@ -903,6 +909,10 @@ ol, ul {
 
 .basket__total h3 span {
   color: #97cf1f;
+}
+
+.basket__total h3 span:nth-child(2) {
+  margin-left: 15px;
 }
 
 .basket__total .btn-primary {

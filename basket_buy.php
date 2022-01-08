@@ -5,6 +5,11 @@ include_once("./config/init.php");
 // Подключение функций
 include_once("./functions/helpers.php");
 
+if (!isset($_SESSION['user'])) {
+  header("Location: index.php"); // переадресация
+  exit();
+}
+
 // Получение всех товаров корзины
 $goods = "";
 
