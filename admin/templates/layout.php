@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="../../styles/swiper.min.css" />
   <link rel="stylesheet" href="../../styles/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_green.css">
+
+  <?php if ( isset($_GET["add"]) || isset($_POST["update"]) || ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || isset($_POST["updateRecording"])))) : ?>
+    <style>
+      body, html {
+        overflow: hidden;
+      }
+    </style>
+  <?php endif; ?>
 </head>
 
 <body>
@@ -45,10 +53,10 @@
         <div class="modal__item">
           <a href="<?= $url ?>" class="modal__close"><i class="fas fa-times"></i></a>
             <?php
-              if (isset($_GET['add']) || $_SERVER['REQUEST_METHOD'] === "POST") {
+              if (isset($_GET['add']) || ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"]))) {
                 print($add);
               }
-              elseif (isset($_GET['update']) || $_SERVER['REQUEST_METHOD'] === "POST") {
+              elseif (isset($_GET['update']) || ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["updateRecording"]))) {
                 print($update);
               } else {
                 print("Произошла ошибка...");

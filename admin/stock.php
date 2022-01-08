@@ -17,11 +17,19 @@ $data = db_fetch_data($link, $sql);
 // шаблонизация main.php
 $main = include_template("stock/stock.php", ["data" => $data]); // шаблон основной страницы
 
-$add = include_template("stock/stock_form.php"); // шаблон добавления
-$update = include_template("stock/stock_update.php"); // шаблон изменения
+$add = include_template("stock/stock_add.php"); // шаблон добавления
+$update = "";
+if (isset($_GET['update'])) {
+  $_SESSION["updateID"] = $_GET['update'];
+  $sql = "SELECT id_good, discount, bonuses, data_start, data_end FROM stock WHERE id = ?";
+  $_SESSION["updateData"] = db_fetch_data($link, $sql, [$_GET['update']])[0];
+  $update = include_template("stock/stock_update.php", ["updateData" => $_SESSION["updateData"]]); // шаблон изменения
+}
 
 // проверка формы добавления записи
-if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { // если форма отправлена
+if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || isset($_POST["updateRecording"])))
+{
+  // если форма отправлена
   $required = ['id', 'date']; // массив обязательных полей
   $errors = []; // массив ошибок
 
@@ -38,6 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { //
       } elseif ($empty === 0) {
         return "Такого товара не существует";
       } elseif ($count !== 0) {
+        if (isset($_POST["updateRecording"]) && $_SESSION["updateData"]['id_good'] == $_POST["id"]) {
+          return;
+        }
         return "Акция для указанного товара уже существует";
       }
     },
@@ -87,13 +98,27 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["addRecording"])) { //
 
   // есть ли в массиве ошибок, ошибки
   if (count($errors)) {
-    $add = include_template("stock/stock_form.php", ["errors" => $errors]);
+    if (isset($_POST["addRecording"])) {
+      $add = include_template("stock/stock_add.php", ["errors" => $errors]);
+    }
+    if (isset($_POST["updateRecording"])) {
+      $update = include_template("stock/stock_update.php", ["errors" => $errors]);
+    }
   } else {
     $discount = empty($_POST["discount"]) ? 0 : $_POST["discount"];
     $bonus = empty($_POST["bonus"]) ? 0 : $_POST["bonus"];
     $dateStart = empty($_POST["dateStart"]) ? date("Y-m-d") : $_POST["dateStart"];
-    $sql = "INSERT INTO stock SET id_good = ?, discount = ?, bonuses = ?, data_end = ?, data_start = ?";
-    $empty = db_fetch_data($link, $sql, [$_POST["id"], $discount, $bonus, $_POST["date"], $dateStart]);
+
+    if (isset($_POST["addRecording"])) {
+      $sql = "INSERT INTO stock SET id_good = ?, discount = ?, bonuses = ?, data_end = ?, data_start = ?";
+      $empty = db_fetch_data($link, $sql, [$_POST["id"], $discount, $bonus, $_POST["date"], $dateStart]);
+    }
+    if (isset($_POST["updateRecording"])) {
+      $sql = "UPDATE stock SET id_good = ?, discount = ?, bonuses = ?, data_end = ?, data_start = ? WHERE id = ?";
+      $empty = db_fetch_data($link, $sql, [$_POST["id"], $discount, $bonus, $_POST["date"], $dateStart, $_SESSION["updateID"]]);
+      unset($_SESSION["updateID"]);
+      unset($_SESSION["updateData"]);
+    }
 
     header("Location: /admin/stock.php"); // переадресация
     exit();
