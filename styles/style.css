@@ -795,6 +795,21 @@ ol, ul {
   width: 0;
 }
 
+.goods__item-price, .goods__item-bonus {
+  color: #97cf1f;
+  font-weight: 700;
+}
+
+.goods__item-price span, .goods__item-bonus span {
+  color: #000;
+}
+
+.goods__item-price span:nth-child(2), .goods__item-bonus span:nth-child(2) {
+  color: #777;
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+
 .goods-no-grid {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;

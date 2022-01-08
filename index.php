@@ -6,7 +6,12 @@ include_once("./config/init.php");
 include_once("./functions/helpers.php");
 
 // Получение всех товаров из бд
-$sql = "SELECT id, title, price, description FROM goods";
+$sql = "SELECT g.id, g.title, g.price, g.description, s.discount, s.bonuses, s.data_start, s.data_end FROM goods g LEFT JOIN stock s on s.id_good = g.id";
+
+if (isset($_GET['discounts'])) {
+  $sql = "SELECT g.id, g.title, g.price, g.description, s.discount, s.bonuses, s.data_start, s.data_end FROM goods g JOIN stock s on s.id_good = g.id WHERE s.data_start <= CURRENT_DATE AND CURRENT_DATE <= s.data_end";
+}
+
 if (isset($_GET['search'])) {
   if ($_GET['search'] === "") {
     header("Location: /"); // переадресация

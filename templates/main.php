@@ -117,13 +117,13 @@
       </form>
 
       <ul class="goods__header-list">
-        <li class="active">
-          <a href="#all">
+        <li class="<?= isset($_GET['discounts']) ? '' : 'active' ?>">
+          <a href="/">
             Все
           </a>
         </li>
-        <li>
-          <a href="#discounts">
+        <li class="<?= isset($_GET['discounts']) ? 'active' : '' ?>">
+          <a href="?discounts">
             Скидки
           </a>
         </li>
@@ -135,6 +135,9 @@
         <div class="goods__none">По вашему запросу ничего не найдено...</div>
       <?php else : ?>
         <?php foreach ($goods as $item) : ?>
+          <?php
+          $itemStatus = $item['data_start'] <= date("Y-m-d") && date("Y-m-d") <= $item['data_end'];
+          ?>
           <div class="goods__item">
             <div class="goods__item-image-block">
               <a class="goods__item-link" href="/">
@@ -145,10 +148,22 @@
               <div class="goods__item-title">
                 <?= $item['title'] ?>
               </div>
+
+              <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus) : ?>
+                <div class="goods__item-bonus" style="margin-top: 10px">
+                  Бонусы за покупку:
+                  <span><?= $item['bonuses'] ?></span>
+                </div>
+              <?php endif; ?>
+
               <div class="goods__item-footer">
                 <div class="goods__item-price">
-                  <?= $item['price'] ?>&#8381;
+                  <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
+                  <?php if (isset($item['discount']) && $item['discount'] !== 0 && $itemStatus) : ?>
+                    <span><?= $item['price'] ?>&#8381;</span>
+                  <?php endif; ?>
                 </div>
+
                 <button type="button" class="goods__item-btn" data-id="<?= $item['id'] ?>" data-title="<?= $item['title'] ?>" data-price="<?= $item['price'] ?>" data-description="<?= $item['description'] ?>">
                   Купить
                 </button>

@@ -58,7 +58,7 @@ if ($goods !== "") {
             <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus) : ?>
               <div class="basket__item-bonus">
                 Бонусы за покупку:
-                <span><?= $item['bonuses'] * $item['number'] ?>&#8381;</span>
+                <span><?= $item['bonuses'] * $item['number'] ?></span>
               </div>
             <?php endif; ?>
 

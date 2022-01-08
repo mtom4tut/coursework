@@ -153,6 +153,20 @@
       }
     }
   }
+
+  &__item-price,
+  &__item-bonus {
+    color: $color-border-accent;
+    font-weight: 700;
+    span {
+      color: $color-text-default;
+      &:nth-child(2) {
+        color: #777;
+        text-decoration: line-through;
+        margin-left: 10px;
+      }
+    }
+  }
 }
 
 .goods-no-grid {
