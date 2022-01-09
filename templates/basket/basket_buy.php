@@ -1,21 +1,3 @@
-<?php
-$sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
-$balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
-
-$price = $_SESSION['buy']['price'];
-$bonus_remove = $_SESSION['buy']['price'];
-if ($_SESSION['buy']['price'] < $balance) {
-  $balance -= $price;
-  $price = 0;
-} else {
-  $price -= $balance;
-  $bonus_remove = $balance;
-  $balance = 0;
-}
-
-unset($_SESSION['buy']);
-?>
-
 <div class="container">
   <ul class="breadcrumb">
     <li><a href="/"><i class="fa fa-home"></i></a> <i class="fas fa-chevron-right"></i></li>
@@ -23,7 +5,7 @@ unset($_SESSION['buy']);
     <li><span>Оформление заказа</span></li>
   </ul>
   <main class="main buy">
-    <?php if ($balance > 0 && !isset($_POST['btnByu'])) : ?>
+    <?php if ($balance > 0 && isset($_SESSION['buy'])) : ?>
       <h1>
         <span>Хотите ли Вы использовать свои бонусы?</span>
       </h1>
@@ -37,7 +19,7 @@ unset($_SESSION['buy']);
     <?php else : ?>
       <h1>
         <span>Заказ успешно сформирован!</span>
-        В скорем времени вам на почту придет номер по которому можно будет остледить заказ...
+        В скорем времени вам на почту придет чек и номер по которому можно будет остледить заказ...
         <span>Спасибо за покупку!</span>
       </h1>
     <?php endif; ?>

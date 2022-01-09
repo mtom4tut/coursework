@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "templates/basket/basket_change_num.php",
       { id, value },
       function (data) {
-        // window.location.reload();
+        window.location.reload();
         // console.log(data);
       }
     );
