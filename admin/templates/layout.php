@@ -43,6 +43,9 @@
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/user.php" ? 'active' : '' ?>">
               <a class="aside__link" href="/admin/user.php"><i class="fas fa-users"></i> Пользователи</a>
             </li>
+            <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/vipuser.php" ? 'active' : '' ?>">
+              <a class="aside__link" href="/admin/vipuser.php"><i class="fas fa-crown"></i>vip Пользователи</a>
+            </li>
           </ul>
         </nav>
       </aside>

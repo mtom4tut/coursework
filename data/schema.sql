@@ -45,7 +45,7 @@ CREATE TABLE stock (
   id_good int(11) NOT NULL,                                 -- id товара
   discount int(2) NOT NULL DEFAULT 0,                       -- размер скидки
   bonuses int(4) NOT NULL DEFAULT 0,                        -- размер бонусов
-  data_start DATE NOT NULL DEFAULT CURRENT_DATE,            -- дата начала акции
+  data_start DATE NOT NULL,                                 -- дата начала акции
   data_end DATE NOT NULL,                                   -- дата окончания акции
   FOREIGN KEY (id_good) REFERENCES goods(id)
 );
@@ -101,6 +101,12 @@ CREATE TABLE premium_users (
   data_start DATE NOT NULL,                                 -- дата начала
   data_end DATE NOT NULL,                                   -- дата окончания премиума
   FOREIGN KEY (id_user) REFERENCES users(id)
+);
+
+-- БД настроек премиум пользователей
+CREATE TABLE premium_bonus (
+  discount int(3) NOT NULL,                                 -- скидки
+  bonus int(4) NOT NULL                                     -- бонусы
 );
 
 -- БД по цене "3 по цене 2"

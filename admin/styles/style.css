@@ -365,6 +365,26 @@ ol, ul {
   margin-top: 0;
 }
 
+.main__vip-settings {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.main__vip-settings-item + .main__vip-settings-item {
+  margin-left: 40px;
+}
+
+.main__vip-settings-item input {
+  width: 60px;
+  height: 30px;
+  padding-left: 8px;
+  border-radius: 3px;
+  border: 1px #000 solid;
+}
+
 .header {
   color: #fff;
   background-color: #97cf1f;

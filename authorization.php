@@ -7,7 +7,7 @@ include_once("./functions/helpers.php");
 
 unset($_SESSION['basket']); // удаление сессии
 
-if (isset($_SESSION['userMail'])) {
+if (isset($_SESSION['user'])) {
   header("Location: index.php"); // переадресация
   exit();
 }
