@@ -1,5 +1,5 @@
 <div class="main__flex">
-  <form class="main__search" action="/admin/stock.php" method="get" autocomplete="off">
+  <form autocomplete="off" class="main__search" action="/admin/stock.php" method="get" autocomplete="off">
     <select name="select" id="select">
       <option value="s.id">id</option>
       <option value="s.id_good" <?= isset($_GET['select']) && $_GET['select'] === 's.id_good' ? 'selected

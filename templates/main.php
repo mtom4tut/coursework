@@ -111,7 +111,7 @@
     <div class="goods__header">
       <h2 class="goods__header-title">Товары</h2>
 
-      <form class="goods__header-search" action="index.php" method="get" autocomplete="off">
+      <form autocomplete="off" class="goods__header-search" action="index.php" method="get" autocomplete="off">
         <input type="text" name="search" value="" placeholder="Поиск по магазину">
         <button type="submit" class="goods__header-search-btn"><i class="fas fa-search"></i></button>
       </form>

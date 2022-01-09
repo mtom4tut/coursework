@@ -385,6 +385,10 @@ ol, ul {
   border: 1px #000 solid;
 }
 
+.visually-hidden {
+  padding-bottom: 39px !important;
+}
+
 .header {
   color: #fff;
   background-color: #97cf1f;

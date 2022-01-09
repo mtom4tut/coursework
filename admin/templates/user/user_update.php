@@ -1,6 +1,6 @@
 <h2 class="modal__title">Изменение данных пользователя</h2>
 
-<form class="form auth" action="/admin/user.php" method="post" enctype="multipart/form-data">
+<form autocomplete="off" class="form auth" action="/admin/user.php" method="post" enctype="multipart/form-data">
 <div class="form__group">
     <label class="well__text form__label" for="username">Имя<sup>*</sup></label>
 

@@ -10,7 +10,7 @@
     <p class="main__info">Если Вы уже зарегистрированы, перейдите на страницу <a href="/authorization.php">авторизации</a>.</p>
 
 
-    <form class="form" action="register.php" method="post" autocomplete="off">
+    <form autocomplete="off" class="form" action="register.php" method="post" autocomplete="off">
       <fieldset>
         <legend>Основные данные</legend>
 
