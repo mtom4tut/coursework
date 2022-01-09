@@ -33,7 +33,7 @@
     <a href="https://www.pochta.ru/">ПочтаРоссии</a>
   </div>
 
-  <h2>Вы заказали</h2>
+  <h2>Вы заказали:</h2>
   <ul>
     <?php foreach ($goods as $item) : ?>
       <li><?= $item['title'] ?></li>

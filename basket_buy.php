@@ -39,7 +39,10 @@ if (count($goods) === 0 || !isset($_SESSION['buy'])) {
 // сумма товаров
 $total_price = $_SESSION['buy']['price'];
 
-if (isset($_GET['buy']) || isset($_GET['bonus'])) {
+$sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
+$balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
+
+if (isset($_GET['buy']) || isset($_GET['bonus']) || (isset($_SESSION['buy']) && $balance == 0)) {
   // добавление заказа
   $sql = "INSERT INTO orders SET id_user = ?, amount = ?";
   $data = [$_SESSION['user']['id'], $total_price];
@@ -75,9 +78,7 @@ if (isset($_SESSION['buy']) && isset($_GET['buy'])) {
   unset($_SESSION['buy']);
 }
 
-$sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
-$balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
-
+$balance_bonus = $balance;
 $price = isset($_SESSION['buy']['price']) ? $_SESSION['buy']['price'] : '';
 $bonus_remove = isset($_SESSION['buy']['price']) ? $_SESSION['buy']['price'] : '';
 
@@ -113,7 +114,7 @@ if (isset($_SESSION['buy']) && isset($_GET['bonus'])) {
 }
 
 // шаблонизация main.php
-$main = include_template("basket/basket_buy.php", ["price" => $price, "bonus_remove" => $bonus_remove, "balance" => $balance]); // шаблон основной страницы
+$main = include_template("basket/basket_buy.php", ["price" => $price, "bonus_remove" => $bonus_remove, "balance" => $balance_bonus]); // шаблон основной страницы
 
 // Данные для layout.php
 $layoutArr = [
