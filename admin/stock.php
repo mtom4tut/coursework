@@ -36,8 +36,9 @@ if (isset($_GET['select']) && isset($_GET['search'])) {
 
 
   $sql = "SELECT s.id, s.id_good, g.title, s.discount, s.bonuses, s.data_start, s.data_end FROM stock s JOIN goods g on s.id_good = g.id where ";
-  $sql .= $_GET['select'] . " = ?";
-  $data = db_fetch_data($link, $sql, [$_GET['search']]);
+  $sql .= $_GET['select'] . " LIKE ?";
+  $search = "%".$_GET['search']."%";
+  $data = db_fetch_data($link, $sql, [$search]);
 }
 
 // шаблонизация main.php

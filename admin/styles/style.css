@@ -400,13 +400,10 @@ ol, ul {
   padding: 15px 0 15px 10px;
 }
 
-.aside__li + .aside__li {
-  margin-top: 12px;
-}
-
 .aside__li i {
   color: #97cf1f;
   margin-right: 15px;
+  width: 15px;
 }
 
 .aside__li.active {
