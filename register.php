@@ -94,7 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
       if (isset($_POST["plcheckbox"]) && $_POST["plcheckbox"]) {
         // создание qr кода
         $text = "user=" . $res . ";";
-        $text .= "email=" . $_POST['email'] . ";";
         $path = "./img/qr/" . $res . ".png";
 
         QRcode::png($text, $path, "H");

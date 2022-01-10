@@ -46,6 +46,9 @@
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/vipuser.php" ? 'active' : '' ?>">
               <a class="aside__link" href="/admin/vipuser.php"><i class="fas fa-crown"></i>vip Пользователи</a>
             </li>
+            <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/bonus_card.php" ? 'active' : '' ?>">
+              <a class="aside__link" href="/admin/bonus_card.php"><i class="fas fa-credit-card"></i>Бонусные карты</a>
+            </li>
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/goods.php" ? 'active' : '' ?>">
               <a class="aside__link" href="/admin/goods.php"><i class="fas fa-digital-tachograph"></i>Товары</a>
             </li>
