@@ -26,9 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let name = $(target).attr("name");
     let value = target.value;
 
-    $.post("templates/vipuser/vipuser_bonus_update.php", {name, value}, function (data) {
-      // console.log(data);
-    });
+    $.post(
+      "templates/vipuser/vipuser_bonus_update.php",
+      { name, value },
+      function (data) {
+        // console.log(data);
+      }
+    );
   });
 
   $(".main__vip-settings input").on("blur", (e) => {
@@ -36,8 +40,30 @@ document.addEventListener("DOMContentLoaded", () => {
     let name = $(target).attr("name");
     let value = target.value;
 
-    $.post("templates/vipuser/vipuser_bonus_update.php", {name, value}, function (data) {
-      // console.log(data);
-    });
+    $.post(
+      "templates/vipuser/vipuser_bonus_update.php",
+      { name, value },
+      function (data) {
+        // console.log(data);
+      }
+    );
+  });
+
+  let startPicker = flatpickr("#date-from", {
+    dateFormat: "d.m.Y",
+    locale: "ru",
+    // для интервала дат
+    onChange: function (selectedDates) {
+      endPicker.set("minDate", selectedDates[0]);
+    },
+  });
+
+  let endPicker = flatpickr("#date-to", {
+    dateFormat: "d.m.Y",
+    locale: "ru",
+    // для интервала дат
+    onChange: function (selectedDates) {
+      startPicker.set("maxDate", selectedDates[0]);
+    },
   });
 });

@@ -561,4 +561,17 @@ ol, ul {
   color: #97cf1f;
   margin-bottom: 24px;
 }
+
+.report__info {
+  margin-top: 30px;
+}
+
+.report__info div {
+  font-size: 18px;
+}
+
+.report__info span {
+  color: #97cf1f;
+  font-weight: 700;
+}
 /*# sourceMappingURL=style.css.map */

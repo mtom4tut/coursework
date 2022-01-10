@@ -1,0 +1,14 @@
+.report {
+  &__info {
+    margin-top: 30px;
+
+    div {
+      font-size: 18px;
+    }
+
+    span {
+      color: $color-text-accent;
+      font-weight: 700;
+    }
+  }
+}
