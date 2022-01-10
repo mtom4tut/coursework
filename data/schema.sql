@@ -24,9 +24,9 @@ CREATE TABLE users (
 -- БД праздников
 CREATE TABLE holidays (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,           -- id празника
-  date DATE,                                                -- дата празника
+  date char(5),                                             -- дата празника
   holiday varchar(40) NOT NULL,                             -- название праздника
-  discount int(4) NOT NULL                                  -- скидка в праздник
+  discount int(3) NOT NULL DEFAULT 0                        -- скидка в праздник
 );
 
 -- БД бонусных карт

@@ -9,6 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // формат даты в календаре
+  flatpickr("#dateSk", {
+    dateFormat: "m-d",
+    locale: "ru",
+    maxDate: new Date(),
+  });
+
+  // формат даты в календаре
   flatpickr("#dateEnd", {
     dateFormat: "Y-m-d",
     locale: "ru",

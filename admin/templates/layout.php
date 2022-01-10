@@ -40,6 +40,9 @@
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/stock.php" ? 'active' : '' ?>">
               <a class="aside__link" href="/admin/stock.php"><i class="fas fa-percent"></i> Скидки</a>
             </li>
+            <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/calendar.php" ? 'active' : '' ?>">
+              <a class="aside__link" href="/admin/calendar.php"><i class="far fa-calendar-alt"></i> Праздники</a>
+            </li>
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/user.php" ? 'active' : '' ?>">
               <a class="aside__link" href="/admin/user.php"><i class="fas fa-users"></i> Пользователи</a>
             </li>
