@@ -1,10 +1,4 @@
 <?php
-// Подключение бд
-include_once("./config/init.php");
-
-// Подключение функций
-include_once("./functions/helpers.php");
-
 $total_price = 0;
 $total_bonus = 0;
 if ($goods !== "") {
@@ -16,6 +10,16 @@ if ($goods !== "") {
       $total_price += $item['price'] * $item['number'];
     }
   }
+
+  $sql = "SELECT COUNT(*) FROM premium_users where id_user = ? and data_start <= CURRENT_DATE and CURRENT_DATE <= data_end";
+  $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['COUNT(*)'];
+  if ($count !== 0) {
+    $sql = "SELECT discount, bonus FROM premium_bonus";
+    $bonus = db_fetch_data($link, $sql)[0];
+    $total_bonus += $total_price * ($bonus['bonus']/100);
+    $total_price = $total_price * ((100 - $bonus['discount'])/100);
+  }
+
   $_SESSION['buy'] = [
     "price" => $total_price,
     "bonus" => $total_bonus

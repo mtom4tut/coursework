@@ -106,7 +106,7 @@ CREATE TABLE premium_users (
 -- БД настроек премиум пользователей
 CREATE TABLE premium_bonus (
   discount int(3) NOT NULL,                                 -- скидки
-  bonus int(4) NOT NULL                                     -- бонусы
+  bonus int(3) NOT NULL                                     -- бонусы
 );
 
 -- БД по цене "3 по цене 2"

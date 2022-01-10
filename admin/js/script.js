@@ -26,7 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let name = $(target).attr("name");
     let value = target.value;
 
-    let id = target.parentElement.dataset.id;
+    $.post("templates/vipuser/vipuser_bonus_update.php", {name, value}, function (data) {
+      // console.log(data);
+    });
+  });
+
+  $(".main__vip-settings input").on("blur", (e) => {
+    const target = e.target;
+    let name = $(target).attr("name");
+    let value = target.value;
+
     $.post("templates/vipuser/vipuser_bonus_update.php", {name, value}, function (data) {
       // console.log(data);
     });

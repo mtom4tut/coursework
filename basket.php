@@ -21,7 +21,7 @@ if (isset($_SESSION['user'])) {
 }
 
 // шаблонизация main.php
-$main = include_template("basket/basket.php", ["goods" => $goods]); // шаблон основной страницы
+$main = include_template("basket/basket.php", ["goods" => $goods, "link" => $link]); // шаблон основной страницы
 
 // Данные для layout.php
 $layoutArr = [

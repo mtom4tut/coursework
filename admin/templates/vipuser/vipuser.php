@@ -20,12 +20,12 @@
 
 <div class="main__vip-settings">
   <div class="main__vip-settings-item">
-    Дополнительная скидка:
+    Дополнительная скидка <small>(в % от суммы покупки)</small>:
     <input type="number" name="discount" class="basket__item-input-qty" min="0" max="100" value="<?= $vip_discount ?>">
   </div>
   <div class="main__vip-settings-item">
-    Дополнительные бонусы:
-    <input type="number" name="bonus" class="basket__item-input-qty" min="0" max="9999" value="<?= $vip_bonus ?>">
+    Дополнительные бонусы <small>(в % от суммы покупки)</small>
+    <input type="number" name="bonus" class="basket__item-input-qty" min="0" max="100" value="<?= $vip_bonus ?>">
   </div>
 </div>
 
