@@ -47,7 +47,7 @@ $add = include_template("goods/goods_add.php"); // шаблон добавлен
 $update = "";
 if (isset($_GET['update'])) {
   $_SESSION["updateID"] = $_GET['update'];
-  $sql = "SELECT id, title, price, description FROM goods WHERE id = ?";
+  $sql = "SELECT title, price, description FROM goods WHERE id = ?";
   $_SESSION["updateData"] = db_fetch_data($link, $sql, [$_GET['update']])[0];
   $update = include_template("goods/goods_update.php", ["updateData" => $_SESSION["updateData"]]); // шаблон изменения
 }
@@ -55,14 +55,14 @@ if (isset($_GET['update'])) {
 // проверка формы добавления записи
 if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || isset($_POST["updateRecording"]))) {
   // если форма отправлена
-  $required = ['title', 'price', 'file']; // массив обязательных полей
+  $required = ['title', 'price']; // массив обязательных полей
   $errors = []; // массив ошибок
 
   $rules = [
     "title" => function () {
       if (empty($_POST["title"])) {
         return "Размер скидки должен быть больше 0 и меньше 100";
-      } elseif (is_correct_length("title", 0, 60)) {
+      } elseif (!is_correct_length("title", 0, 60)) {
         return "Длинна заголовка слишком велика";
       }
     },
@@ -73,13 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
         return "Цена должна быть больше 0";
       }
     },
-    "file" => function () {
-      if (isset($_FILES["file"]["size"])) {
-        return "Пожалуста загрузите картинку";
-      } elseif ($_FILES["file"]["size"] > 5000000) {
-        return "Размер файла превышает 50Мб";
-      }
-    }
   ];
 
   // заполняем массив ошибками, если есть
@@ -112,18 +105,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
     if (isset($_POST["addRecording"])) {
       $sql = "INSERT INTO goods SET title = ?, price = ?, description = ?";
       $empty = db_insert_data($link, $sql, [$_POST['title'], $_POST['price'], $description]);
-
-      // работа с файлом
-      $filename = NULL;
-      if ($_FILES["file"]["error"] === UPLOAD_ERR_OK) {
-        $tmp_name = $_FILES['file']['tmp_name']; // полный путь к временному файлу на диске
-        $path = $_FILES['file']['name']; // исходное имя файла
-
-        // uniqid — Сгенерировать уникальный ID
-        // explode - Разбивает строку с помощью разделителя
-        $filename = $empty . "." . explode('.', $path)[1];
-        move_uploaded_file($tmp_name, "../img/goods/" . $filename);
-      }
     }
     if (isset($_POST["updateRecording"])) {
       $sql = "UPDATE goods SET title = ?, price = ?, description = ? WHERE id = ?";
@@ -132,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
       unset($_SESSION["updateData"]);
     }
 
-    header("Location: /admin/stock.php"); // переадресация
+    header("Location: /admin/goods.php"); // переадресация
     exit();
   }
 }

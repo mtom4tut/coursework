@@ -177,6 +177,21 @@ ol, ul {
   cursor: pointer;
 }
 
+.form textarea {
+  resize: none;
+  border-radius: 6px;
+  padding: 10px;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease;
+}
+
+.form textarea:focus {
+  border-color: #97cf1f;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.078), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.078), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
 .form.auth .form__group {
   display: -webkit-box;
   display: -ms-flexbox;

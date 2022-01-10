@@ -26,19 +26,9 @@
   </div>
 
   <div class="form__group">
-    <label class="well__text form__label" for="file">Файл</label>
-
-    <div class="form__input-file <?php if (isset($errors["file"])) {
-                                    print("form__input--error");
-                                  } ?>">
-      <input class="visually-hidden" type="file" name="file" id="file" value="<?= get_post_val("file") ?>">
-
-      <?php if (isset($errors["file"])) : ?>
-        <p class="form__message"> <?= $errors["file"] ?> </p>
-      <?php endif; ?>
-    </div>
+    <label class="well__text form__label" for="description">Описание товара</label>
+    <textarea name="description" id="description" rows="4"><?= get_post_val("description") ?></textarea>
   </div>
-
 
   <input type="hidden" name="addRecording" value="addRecording" />
 

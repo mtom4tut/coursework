@@ -62,7 +62,8 @@
     &:focus {
       border-color: $color-border-accent;
       outline: 0;
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.078), 0 0 8px rgba(102, 175, 233, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.078),
+        0 0 8px rgba(102, 175, 233, 0.6);
     }
   }
 
@@ -74,7 +75,7 @@
 
   &__message {
     font-size: 12px;
-    margin-left: 21% ;
+    margin-left: 21%;
     padding: 5px 0;
     color: #ee372a;
   }
@@ -104,9 +105,23 @@
       transition: background-color 0.3s ease-in;
 
       &:hover {
-        background-color: $color-text-default;
+        background-color: $color-background-primary;
         cursor: pointer;
       }
+    }
+  }
+
+  textarea {
+    resize: none;
+    border-radius: 6px;
+    padding: 10px;
+    transition: 0.3s all ease;
+
+    &:focus {
+      border-color: $color-border-accent;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.078),
+        0 0 8px rgba(102, 175, 233, 0.6);
     }
   }
 }
