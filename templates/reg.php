@@ -54,6 +54,12 @@
             <p class="form__message"> <?= $errors["date"] ?> </p>
           <?php endif; ?>
         </div>
+
+        <div class="form__group">
+          <label class="form__label" for="plcheckbox">Стать участником программы лояльности?</label>
+
+          <input class="" type="checkbox" name="plcheckbox" id="plcheckbox" <?= get_post_val("plcheckbox") != '' ? 'checked' : '' ?>>
+        </div>
       </fieldset>
 
       <fieldset>

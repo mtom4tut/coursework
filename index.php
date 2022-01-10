@@ -23,8 +23,14 @@ if (isset($_GET['search'])) {
   $goods = db_fetch_data($link, $sql);
 }
 
+$count = 0;
+if (isset($_SESSION['user'])) {
+  $sql = "SELECT COUNT(*) FROM bonus_cards WHERE id_user = ?";
+  $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+}
+
 // шаблонизация main.php
-$main = include_template("main.php", ["goods" => $goods]); // шаблон основной страницы
+$main = include_template("main.php", ["goods" => $goods, "count" => $count]); // шаблон основной страницы
 
 
 // Данные для layout.php

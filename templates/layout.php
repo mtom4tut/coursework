@@ -12,8 +12,13 @@ if (isset($_SESSION['user'])) {
   $basket_count = count($_SESSION['basket']);
 }
 
-// Получение бонусов пользователя
+$count = 0;
 if (isset($_SESSION['user'])) {
+  $sql = "SELECT COUNT(*) FROM bonus_cards WHERE id_user = ?";
+  $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+}
+
+if (isset($_SESSION['user']) && $count > 0) {
   $sql = "SELECT сard_number, balance from bonus_cards where id_user = ?";
   $bonus_cards = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0];
 }
@@ -56,15 +61,22 @@ if (isset($_SESSION['user'])) {
             <a href="/register.php">Регистрация</a>
             <a href="/authorization.php">Вход</a>
           <?php else : ?>
-            <span><b>Ваши бонусы: </b> <?=$bonus_cards['balance']?></span>
-            <span class="header__top-right-bonus">
-              <b>Бонусная карта</b>
-              <div class="header__top-right-bonus-card">
-                <img src="./img/qr/<?=$_SESSION['user']['id']?>.png" alt="">
-                <span><?=chunk_split($bonus_cards['сard_number'], 4, ' ')?></span>
-              </div>
-            </span>
-            <a href="/vip_user.php">Стать VIP пользователем?</a>
+            <?php if ($count > 0) : ?>
+              <span><b>Ваши бонусы: </b> <?= $bonus_cards['balance'] ?></span>
+            <?php endif; ?>
+            <?php if ($count > 0) : ?>
+              <span class="header__top-right-bonus">
+                <b>Бонусная карта</b>
+                <div class="header__top-right-bonus-card">
+                  <img src="./img/qr/<?= $_SESSION['user']['id'] ?>.png" alt="">
+                  <span><?= chunk_split($bonus_cards['сard_number'], 4, ' ') ?></span>
+                </div>
+              </span>
+              <a href="/vip_user.php">Стать VIP пользователем?</a>
+            <?php endif; ?>
+            <?php if ($count == 0) : ?>
+              <a href="/pl_user.php">Стать участником программы лояльности?</a>
+            <?php endif; ?>
             <a href="/logout.php">Выход</a>
           <?php endif; ?>
         </div>
@@ -180,4 +192,5 @@ if (isset($_SESSION['user'])) {
   <script src='/js/flatpickr.js'></script>
   <script src="/js/script.js?ver=1"></script>
 </body>
+
 </html>

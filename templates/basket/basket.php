@@ -1,11 +1,22 @@
 <?php
 $total_price = 0;
 $total_bonus = 0;
+
+$count = 0;
+if (isset($_SESSION['user'])) {
+  $sql = "SELECT COUNT(*) FROM bonus_cards WHERE id_user = ?";
+  $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+}
+
 if ($goods !== "") {
   foreach ($goods as $item) {
     if ($item['data_start'] <= date("Y-m-d") && date("Y-m-d") <= $item['data_end']) {
-      $total_price += $item['price'] * ((100 - $item['discount']) / 100) * $item['number'];
-      $total_bonus += $item['bonuses'] * $item['number'];
+      if ($count > 0) {
+        $total_price += $item['price'] * ((100 - $item['discount']) / 100) * $item['number'];
+        $total_bonus += $item['bonuses'] * $item['number'];
+      } else {
+        $total_price += $item['price'] * $item['number'];
+      }
     } else {
       $total_price += $item['price'] * $item['number'];
     }
@@ -16,8 +27,8 @@ if ($goods !== "") {
   if ($count !== 0) {
     $sql = "SELECT discount, bonus FROM premium_bonus";
     $bonus = db_fetch_data($link, $sql)[0];
-    $total_bonus += $total_price * ($bonus['bonus']/100);
-    $total_price = $total_price * ((100 - $bonus['discount'])/100);
+    $total_bonus += $total_price * ($bonus['bonus'] / 100);
+    $total_price = $total_price * ((100 - $bonus['discount']) / 100);
   }
 
   $_SESSION['buy'] = [
@@ -53,13 +64,15 @@ if ($goods !== "") {
             </div>
             <div class="basket__item-price">
               Цена:
-              <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
+              <?php if ($count > 0) : ?>
+                <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
+              <?php endif; ?>
               <?php if (isset($item['discount']) && $item['discount'] !== 0 && $itemStatus) : ?>
                 <span><?= $item['price'] ?>&#8381;</span>
               <?php endif; ?>
             </div>
 
-            <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus) : ?>
+            <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus && $count > 0) : ?>
               <div class="basket__item-bonus">
                 Бонусы за покупку:
                 <span><?= $item['bonuses'] * $item['number'] ?></span>

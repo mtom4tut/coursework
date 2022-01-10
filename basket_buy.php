@@ -39,8 +39,16 @@ if (count($goods) === 0 || !isset($_SESSION['buy'])) {
 // сумма товаров
 $total_price = $_SESSION['buy']['price'];
 
-$sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
-$balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
+$count = 0;
+if (isset($_SESSION['user'])) {
+  $sql = "SELECT COUNT(*) FROM bonus_cards WHERE id_user = ?";
+  $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+}
+
+if ($count > 0) {
+  $sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
+  $balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
+}
 
 if (isset($_GET['buy']) || isset($_GET['bonus']) || (isset($_SESSION['buy']) && $balance == 0)) {
   // добавление заказа

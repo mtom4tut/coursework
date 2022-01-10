@@ -149,7 +149,7 @@
                 <?= $item['title'] ?>
               </div>
 
-              <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus) : ?>
+              <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus && $count > 0) : ?>
                 <div class="goods__item-bonus" style="margin-top: 10px">
                   Бонусы за покупку:
                   <span><?= $item['bonuses'] ?></span>
@@ -158,7 +158,9 @@
 
               <div class="goods__item-footer">
                 <div class="goods__item-price">
+                 <?php if ($count > 0) : ?>
                   <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
+                 <?php endif; ?>
                   <?php if (isset($item['discount']) && $item['discount'] !== 0 && $itemStatus) : ?>
                     <span><?= $item['price'] ?>&#8381;</span>
                   <?php endif; ?>

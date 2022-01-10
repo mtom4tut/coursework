@@ -91,20 +91,22 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
         "name" => trim(strip_tags($_POST['name']))
       ];
 
-      // создание qr карты
-      $text = "user=" . $res . ";";
-      $text .= "email=" . $_POST['email'] . ";";
-      $path = "./img/qr/" . $res . ".png";
+      if (isset($_POST["plcheckbox"]) && $_POST["plcheckbox"]) {
+        // создание qr кода
+        $text = "user=" . $res . ";";
+        $text .= "email=" . $_POST['email'] . ";";
+        $path = "./img/qr/" . $res . ".png";
 
-      QRcode::png($text, $path, "H");
+        QRcode::png($text, $path, "H");
 
-      // создание номера карты
-      $card = str_pad($_SESSION['user']['id'], 16, "0", STR_PAD_LEFT);
+        // создание номера карты
+        $card = str_pad($_SESSION['user']['id'], 16, "0", STR_PAD_LEFT);
 
-      // добавление карты
-      $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?";
-      $data = [$_SESSION['user']['id'], $card];
-      $res = db_insert_data($link, $sql, $data);
+        // добавление карты
+        $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?";
+        $data = [$_SESSION['user']['id'], $card];
+        $res = db_insert_data($link, $sql, $data);
+      }
 
       header("Location: index.php"); // переадресация
       exit();

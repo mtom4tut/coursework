@@ -42,7 +42,7 @@
     left: -2px;
   }
 
-  input {
+  &__input {
     display: inline-block;
     width: 70%;
     background: #f5f5f5;
@@ -103,6 +103,8 @@
       padding: 14px 20px;
       border-radius: 6px;
       transition: background-color 0.3s ease-in;
+      outline: 0;
+      border: none;
 
       &:hover {
         background-color: $color-background-primary;
