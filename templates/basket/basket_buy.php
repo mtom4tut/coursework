@@ -5,7 +5,7 @@
     <li><span>Оформление заказа</span></li>
   </ul>
   <main class="main buy">
-    <?php if ($balance > 0 && isset($_SESSION['buy'])) : ?>
+    <?php if (isset($balance) && $balance > 0 && isset($_SESSION['buy'])) : ?>
       <h1>
         <span>Хотите ли Вы использовать свои бонусы?</span>
       </h1>

@@ -158,10 +158,12 @@
 
               <div class="goods__item-footer">
                 <div class="goods__item-price">
-                 <?php if ($count > 0) : ?>
-                  <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
-                 <?php endif; ?>
-                  <?php if (isset($item['discount']) && $item['discount'] !== 0 && $itemStatus) : ?>
+                  <?php if ($count > 0) : ?>
+                    <span><?= $itemStatus ? $item['price'] * ((100 - $item['discount']) / 100) : $item['price'] ?>&#8381;</span>
+                    <?php if (isset($item['discount']) && $item['discount'] !== 0 && $itemStatus) : ?>
+                      <span><?= $item['price'] ?>&#8381;</span>
+                    <?php endif; ?>
+                  <?php else : ?>
                     <span><?= $item['price'] ?>&#8381;</span>
                   <?php endif; ?>
                 </div>

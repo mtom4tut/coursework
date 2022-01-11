@@ -43,7 +43,6 @@ if (isset($_GET['select']) && isset($_GET['search'])) {
   $data = db_fetch_data($link, $sql, [$search]);
 }
 
-
 // шаблонизация main.php
 $main = include_template("bonus_card/bonus_card.php", ["data" => $data]); // шаблон основной страницы
 
@@ -121,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
       QRcode::png($text, $path, "H");
 
       // создание номера карты
-      $card = str_pad($_SESSION['user']['id'], 16, "0", STR_PAD_LEFT);
+      $card = str_pad($_POST['id_user'], 16, "0", STR_PAD_LEFT);
 
       // добавление карты
       $sql = "INSERT INTO bonus_cards SET id_user = ?, сard_number = ?";

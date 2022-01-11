@@ -5,11 +5,11 @@
 
       <form class="form auth" action="/admin/authorization.php" method="post" enctype="multipart/form-data">
         <div class="form__group">
-          <label class="well__text form__label" for="login">E-Mail</label>
+          <label class="well__text form__label" for="login">Логин</label>
 
           <input class="form__input <?php if (isset($errors["login"])) {
                                       print("form__input--error");
-                                    } ?>" type="text" name="login" id="login" value="<?= get_post_val("login") ?>" placeholder="Введите E-Mail">
+                                    } ?>" type="text" name="login" id="login" value="<?= get_post_val("login") ?>" placeholder="Введите логин">
 
           <?php if (isset($errors["login"])) : ?>
             <p class="form__message"> <?= $errors["login"] ?> </p>

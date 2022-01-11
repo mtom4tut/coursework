@@ -13,14 +13,6 @@ if (!isset($_SESSION['user'])) {
   exit();
 }
 
-// Создание транспорта
-$transport = (new Swift_SmtpTransport('smtp.mail.ru', 465, 'ssl'))
-  ->setUsername('testemail-00@mail.ru')
-  ->setPassword('VxBQKJT5QxqWyFTHjtLz');
-
-// Создание почтовой программы, используя созданный транспорт
-$mailer = new Swift_Mailer($transport);
-
 // Получение всех товаров корзины
 $goods = "";
 
@@ -45,6 +37,7 @@ if (isset($_SESSION['user'])) {
   $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
 }
 
+$balance = 0;
 if ($count > 0) {
   $sql = "SELECT balance FROM bonus_cards WHERE id_user = ?";
   $balance = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['balance'];
@@ -76,27 +69,23 @@ if (isset($_SESSION['buy']) && isset($_GET['buy'])) {
   // Создание шаблона
   $msg_content = include_template('send_email.php', ['goods' => $goods, 'price' => $total_price, 'bonus' => $_SESSION['buy']['bonus']]);
 
-  // Создание сообщения
-  $message = (new Swift_Message('Уведомление от сервиса «LetterHead»'))
-    ->setFrom(['testemail-00@mail.ru' => 'LetterHead']) // отправитель
-    ->setTo($_SESSION['user']['mail']) // получатель
-    ->setBody($msg_content, 'text/html');
-
-  $result = $mailer->send($message); // отправляем письмо
   unset($_SESSION['buy']);
 }
 
-$balance_bonus = $balance;
 $price = isset($_SESSION['buy']['price']) ? $_SESSION['buy']['price'] : '';
-$bonus_remove = isset($_SESSION['buy']['price']) ? $_SESSION['buy']['price'] : '';
 
-if (isset($_SESSION['buy']) && $_SESSION['buy']['price'] < $balance) {
-  $balance -= $price;
-  $price = 0;
-} elseif (isset($_SESSION['buy']['price'])) {
-  $price -= $balance;
-  $bonus_remove = $balance;
-  $balance = 0;
+if ($count > 0) {
+  $balance_bonus = $balance;
+  $bonus_remove = isset($_SESSION['buy']['price']) ? $_SESSION['buy']['price'] : '';
+
+  if (isset($_SESSION['buy']) && $_SESSION['buy']['price'] < $balance) {
+    $balance -= $price;
+    $price = 0;
+  } elseif (isset($_SESSION['buy']['price'])) {
+    $price -= $balance;
+    $bonus_remove = $balance;
+    $balance = 0;
+  }
 }
 
 if (isset($_SESSION['buy']) && isset($_GET['bonus'])) {
@@ -107,22 +96,34 @@ if (isset($_SESSION['buy']) && isset($_GET['bonus'])) {
     $sql = "UPDATE bonus_cards SET balance = 0 WHERE id_user = ?";
     $data = db_insert_data($link, $sql, [$_SESSION['user']['id']]);
   }
-
-  // Создание шаблона
-  $msg_content = include_template('send_email.php', ['goods' => $goods, 'price' => $price, 'bonus' => 0]);
-
-  // Создание сообщения
-  $message = (new Swift_Message('Уведомление от сервиса «LetterHead»'))
-    ->setFrom(['testemail-00@mail.ru' => 'LetterHead']) // отправитель
-    ->setTo($_SESSION['user']['mail']) // получатель
-    ->setBody($msg_content, 'text/html');
-
-  $result = $mailer->send($message); // отправляем письмо
   unset($_SESSION['buy']);
 }
 
 // шаблонизация main.php
-$main = include_template("basket/basket_buy.php", ["price" => $price, "bonus_remove" => $bonus_remove, "balance" => $balance_bonus]); // шаблон основной страницы
+if($count > 0) {
+  $main = include_template("basket/basket_buy.php", ["price" => $price, "bonus_remove" => $bonus_remove, "balance" => $balance_bonus]); // шаблон основной страницы
+} else {
+  $main = include_template("basket/basket_buy.php"); // шаблон основной страницы
+}
+
+// Создание транспорта
+$transport = (new Swift_SmtpTransport('smtp.mail.ru', 465, 'ssl'))
+  ->setUsername('testemail-00@mail.ru')
+  ->setPassword('VxBQKJT5QxqWyFTHjtLz');
+
+// Создание почтовой программы, используя созданный транспорт
+$mailer = new Swift_Mailer($transport);
+
+// Создание шаблона
+$msg_content = include_template('send_email.php', ['goods' => $goods, 'price' => $price, 'bonus' => 0]);
+
+// Создание сообщения
+$message = (new Swift_Message('Уведомление от сервиса «LetterHead»'))
+  ->setFrom(['testemail-00@mail.ru' => 'LetterHead']) // отправитель
+  ->setTo($_SESSION['user']['mail']) // получатель
+  ->setBody($msg_content, 'text/html');
+
+$result = $mailer->send($message); // отправляем письмо
 
 // Данные для layout.php
 $layoutArr = [
