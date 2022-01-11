@@ -59,9 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
   $errors = []; // массив ошибок
 
   $rules = [
-    "date" => function () {
+    "date" => function () use ($link) {
+      $sql = "SELECT COUNT(*) FROM holidays WHERE date = ?";
+      $count = db_fetch_data($link, $sql, [$_POST["date"]])[0]["COUNT(*)"];
+
       if (empty($_POST["date"])) {
         return "Это поле должно быть заполнено";
+      } elseif ($count !== 0) {
+        return "Праздник с такой датой уже существует";
       }
     },
     "holiday" => function () {

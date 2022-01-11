@@ -31,6 +31,32 @@ if ($goods !== "") {
     $total_price = $total_price * ((100 - $bonus['discount']) / 100);
   }
 
+  // праздники
+  $sql = "SELECT COUNT(*) FROM holidays WHERE date = ?";
+  $countHolidays = db_fetch_data($link, $sql, [date("m-d")])[0]["COUNT(*)"];
+
+  if($countHolidays !== 0) {
+    $sql = "SELECT discount FROM holidays WHERE date = ?";
+    $discount = db_fetch_data($link, $sql, [date("m-d")])[0]['discount'];
+  }
+
+  if($countHolidays !== 0) {
+    $total_price = $total_price * ((100 - $discount) / 100);
+  }
+
+  // День рождения
+  $sql = "SELECT COUNT(*) FROM users WHERE id = ? and month(birthday) = month(CURRENT_DATE) and day(birthday) = day(CURRENT_DATE)";
+  $countbirthday = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+
+  if($countbirthday !== 0){
+    $sql = "SELECT discount FROM holidays WHERE id = 1";
+    $discountBirthday = db_fetch_data($link, $sql)[0]["discount"];
+    $total_price = $total_price * ((100 - $discountBirthday) / 100);
+  }
+
+  $total_price = number_format((float)$total_price, 2, '.', '');
+  $total_bonus = number_format((float)$total_bonus, 2, '.', '');
+
   $_SESSION['buy'] = [
     "price" => $total_price,
     "bonus" => $total_bonus
@@ -50,6 +76,12 @@ if ($goods !== "") {
     <?php if ($goods === "" || count($goods) === 0) : ?>
       <p class="basket__none">Корзина пуста...</p>
     <?php else : ?>
+      <?php if ($countHolidays !== 0) : ?>
+        <div class="basket__discount"><span>Празднечная скидка: </span><?= $discount ?>% от суммы покупки</div>
+      <?php endif; ?>
+      <?php if ($countbirthday !== 0) : ?>
+        <div class="basket__discount"><span>С Днем Рождения! Ваша скидка: </span><?= $discountBirthday ?>% от суммы покупки</div>
+      <?php endif; ?>
       <?php foreach ($goods as $item) : ?>
         <?php $itemStatus = $item['data_start'] <= date("Y-m-d") && date("Y-m-d") <= $item['data_end']; ?>
         <div class="basket__item">

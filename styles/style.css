@@ -981,6 +981,11 @@ ol, ul {
   margin-top: 0;
 }
 
+.basket__discount span {
+  color: #97cf1f;
+  font-weight: 700;
+}
+
 .footer {
   margin-top: 84px;
 }

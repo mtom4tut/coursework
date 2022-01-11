@@ -96,4 +96,11 @@
       margin-top: 0;
     }
   }
+
+  &__discount {
+    span {
+      color: $color-text-accent;
+      font-weight: 700;
+    }
+  }
 }

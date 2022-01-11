@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && (isset($_POST["addRecording"]) || i
         return "Длинна заголовка слишком велика";
       }
     },
-    "price" => function () use ($link) {
+    "price" => function () {
       if (empty($_POST["price"])) {
         return "Поле 'Цена товара' должно быть заполнено";
       } elseif (0 > $_POST["price"]) {
