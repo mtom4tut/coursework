@@ -16,6 +16,9 @@ $count = 0;
 if (isset($_SESSION['user'])) {
   $sql = "SELECT COUNT(*) FROM bonus_cards WHERE id_user = ?";
   $count = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]["COUNT(*)"];
+
+  $sql = "SELECT COUNT(*) FROM premium_users where id_user = ? and data_start <= CURRENT_DATE and CURRENT_DATE <= data_end";
+  $countVip = db_fetch_data($link, $sql, [$_SESSION['user']['id']])[0]['COUNT(*)'];
 }
 
 if (isset($_SESSION['user']) && $count > 0) {
@@ -72,7 +75,12 @@ if (isset($_SESSION['user']) && $count > 0) {
                   <span><?= chunk_split($bonus_cards['сard_number'], 4, ' ') ?></span>
                 </div>
               </span>
-              <a href="/vip_user.php">Стать VIP пользователем?</a>
+              <?php if ($countVip !== 0) : ?>
+                <a href="/vip_user.php">VIP аккаунт</a>
+              <?php else : ?>
+                <a href="/vip_user.php">Стать VIP пользователем?</a>
+              <?php endif; ?>
+
             <?php endif; ?>
             <?php if ($count == 0) : ?>
               <a href="/pl_user.php">Стать участником программы лояльности?</a>
