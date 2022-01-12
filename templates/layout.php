@@ -145,6 +145,7 @@ if (isset($_SESSION['user']) && $count > 0) {
             <li class="footer__text"><a href="/">Политика конфиденциальности</a></li>
             <li class="footer__text"><a href="/">Контакты</a></li>
             <li class="footer__text"><a href="/">Возврат</a></li>
+            <li class="footer__text"><a href="/all_bonus.php">Все скидки</a></li>
           </ul>
         </div>
 
