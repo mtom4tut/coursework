@@ -1,4 +1,5 @@
-.btn-primary, .form__submit .btn-primary {
+.btn-primary,
+.form__submit .btn-primary {
   outline: none;
   border: none;
   display: inline-block;
@@ -18,6 +19,13 @@
   &:hover {
     cursor: pointer;
     background-color: $color-background-primary;
+  }
+
+  &:focus, &:active {
+    outline: none;
+    background-color: $color-background-accent;
+    border: none;
+    box-shadow: none;
   }
 }
 

@@ -34,13 +34,14 @@ if (isset($_SESSION['user']) && $count > 0) {
   <meta charset="UTF-8">
   <title><?= $title ?></title>
   <link rel='shortcut icon' href='img/favicon.png' type='image/x-icon'>
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/normalize.css">
   <link rel="stylesheet" href="styles/style.css?ver=1">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/swiper.min.css" />
   <link rel="stylesheet" href="styles/flatpickr.min.css">
   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_green.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -120,6 +121,8 @@ if (isset($_SESSION['user']) && $count > 0) {
             <i class="fas fa-shopping-cart"></i>
             <b>Корзина</b>
           </a>
+
+          <button type="button" class="btn btn-primary mt-0 ms-3" data-bs-toggle="modal" data-bs-target="#mailModal">Написать специалисту</button>
         </nav>
       </div>
     </div>
@@ -194,6 +197,27 @@ if (isset($_SESSION['user']) && $count > 0) {
       </div>
     </div>
   </footer>
+
+  <!-- модальные окна -->
+  <div class="modal fade" id="mailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form method="post" action="/mail_modal.php" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Написать письмо специалисту</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Введите текст сообщщения</label>
+            <textarea class="form-control rounded-0 mt-2" name="mailContent" id="exampleFormControlTextarea1" placeholder="Введите текст собщения" rows="10" required minlength="20"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="/js/swmin.js"></script>

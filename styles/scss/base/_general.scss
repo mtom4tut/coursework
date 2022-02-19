@@ -47,6 +47,11 @@ button {
   position: relative;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
+}
+
+textarea {
+  resize: none;
 }

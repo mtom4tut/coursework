@@ -100,7 +100,7 @@ if (isset($_SESSION['buy']) && isset($_GET['bonus'])) {
 }
 
 // шаблонизация main.php
-if($count > 0) {
+if ($count > 0) {
   $main = include_template("basket/basket_buy.php", ["price" => $price, "bonus_remove" => $bonus_remove, "balance" => $balance_bonus]); // шаблон основной страницы
 } else {
   $main = include_template("basket/basket_buy.php"); // шаблон основной страницы
@@ -108,8 +108,8 @@ if($count > 0) {
 
 // Создание транспорта
 $transport = (new Swift_SmtpTransport('smtp.mail.ru', 465, 'ssl'))
-  ->setUsername('testemail-00@mail.ru')
-  ->setPassword('VxBQKJT5QxqWyFTHjtLz');
+  ->setUsername('junepc20@mail.ru')
+  ->setPassword('tE0kg3GS04yY9qRXAcGQ');
 
 // Создание почтовой программы, используя созданный транспорт
 $mailer = new Swift_Mailer($transport);
@@ -119,7 +119,7 @@ $msg_content = include_template('send_email.php', ['goods' => $goods, 'price' =>
 
 // Создание сообщения
 $message = (new Swift_Message('Уведомление от сервиса «LetterHead»'))
-  ->setFrom(['testemail-00@mail.ru' => 'LetterHead']) // отправитель
+  ->setFrom(['junepc20@mail.ru' => 'LetterHead']) // отправитель
   ->setTo($_SESSION['user']['mail']) // получатель
   ->setBody($msg_content, 'text/html');
 

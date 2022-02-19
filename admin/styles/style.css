@@ -50,8 +50,13 @@ button {
   position: relative;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
+}
+
+textarea {
+  resize: none;
 }
 
 .form fieldset {
@@ -229,7 +234,8 @@ ol, ul {
   padding-bottom: 0;
 }
 
-.btn-primary, .form__submit .btn-primary {
+.btn-primary,
+.form__submit .btn-primary {
   outline: none;
   border: none;
   display: inline-block;
@@ -245,9 +251,20 @@ ol, ul {
   transition: background-color 0.3s ease-in;
 }
 
-.btn-primary:hover, .form__submit .btn-primary:hover {
+.btn-primary:hover,
+.form__submit .btn-primary:hover {
   cursor: pointer;
   background-color: #000;
+}
+
+.btn-primary:focus, .btn-primary:active,
+.form__submit .btn-primary:focus,
+.form__submit .btn-primary:active {
+  outline: none;
+  background-color: #97cf1f;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .btn-remove {
