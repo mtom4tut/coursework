@@ -33,7 +33,6 @@ $message = (new Swift_Message('Письмо специалисту «LetterHead�
 $result = $mailer->send($message); // отправляем письмо
 
 if ($result) {
-  echo "ffff";
   $message = (new Swift_Message('Уведомление от сервиса «LetterHead»'))
     ->setFrom(['junepc20@mail.ru' => 'LetterHead']) // отправитель
     ->setTo($_SESSION['user']['mail']) // получатель

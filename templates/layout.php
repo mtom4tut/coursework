@@ -213,7 +213,7 @@ if (isset($_SESSION['user']) && $count > 0) {
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Отправить</button>
+          <button type="submit" class="btn btn-primary mt-0">Отправить</button>
         </div>
       </form>
     </div>
