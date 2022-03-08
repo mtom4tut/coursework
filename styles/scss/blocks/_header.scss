@@ -11,10 +11,11 @@
       display: flex;
       justify-content: space-between;
     }
-  }
 
-  &__top-left span:last-child {
-    margin-left: 25px;
+    &-left {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__top-left a,

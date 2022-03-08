@@ -82,6 +82,12 @@ if (isset($_SESSION['user']) && $count > 0) {
                 <a href="/vip_user.php">Стать VIP пользователем?</a>
               <?php endif; ?>
 
+              <?php if ($_SESSION['user']['mailing_list']) : ?>
+                <a href="/mailing_list.php">Отписаться от рассылки</a>
+              <?php else : ?>
+                <a href="/mailing_list.php">Подписаться на рассылку</a>
+              <?php endif; ?>
+
             <?php endif; ?>
             <?php if ($count == 0) : ?>
               <a href="/pl_user.php">Стать участником программы лояльности?</a>

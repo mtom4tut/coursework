@@ -65,13 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") { // если форма отправ
     $main = include_template("auth.php", ["errors" => $errors]);
   } else {
     // получаем id пользователя
-    $sql = "SELECT id, username FROM users WHERE mail = ?";
+    $sql = "SELECT id, username, mailing_list FROM users WHERE mail = ?";
     $user = db_fetch_data($link, $sql, [$_POST['email']]);
 
     $_SESSION['user'] = [
       "id" => $user[0]["id"],
       "mail" => $_POST['email'],
-      "name" => $user[0]["username"]
+      "name" => $user[0]["username"],
+      "mailing_list" => $user[0]["mailing_list"]
     ];
     header("Location: index.php"); // переадресация
     exit();
