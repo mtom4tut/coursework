@@ -56,7 +56,13 @@
               <a class="aside__link" href="/admin/goods.php"><i class="fas fa-digital-tachograph"></i>Товары</a>
             </li>
             <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/statistics_user.php" ? 'active' : '' ?>">
-              <a class="aside__link" href="/admin/statistics_user.php"><i class="far fa-clipboard"></i></i>Статистика пользователей</a>
+              <a class="aside__link" href="/admin/statistics_user.php"><i class="far fa-clipboard"></i>Статистика пользователей</a>
+            </li>
+            <li class="aside__li <?= $_SERVER['REQUEST_URI'] === "/admin/mailing_list.php" ? 'active' : '' ?>">
+              <a class="aside__link" href="/admin/mailing_list.php">
+                <i class="fas fa-mail-bulk"></i>
+                Рассылка
+              </a>
             </li>
           </ul>
         </nav>
@@ -66,7 +72,7 @@
       </main>
     </div>
 
-    <?php if ($_SERVER['REQUEST_URI'] !== "/admin/statistics_user.php" && (isset($_GET['add']) || isset($_GET['update']) || $_SERVER['REQUEST_METHOD'] === "POST")) : ?>
+    <?php if ($_SERVER['REQUEST_URI'] !== "/admin/statistics_user.php" && $_SERVER['REQUEST_URI'] !== "/admin/mailing_list.php" && (isset($_GET['add']) || isset($_GET['update']) || $_SERVER['REQUEST_METHOD'] === "POST")) : ?>
       <div class="modal">
         <div class="modal__item">
           <a href="<?= $url ?>" class="modal__close"><i class="fas fa-times"></i></a>
