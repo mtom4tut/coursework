@@ -128,3 +128,15 @@ CREATE TABLE shopping_cart (
   FOREIGN KEY (id_user) REFERENCES users(id),
   FOREIGN KEY (id_good) REFERENCES goods(id)
 );
+
+-- БД комментариев
+CREATE TABLE comments (
+  id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,           -- id комментария
+  id_user int(10) NOT NULL,                                 -- id пользователя
+  id_good int(10) NOT NULL,                                 -- id товара
+  text_comment TEXT NOT NULL,                               -- комментарий
+  like_comment int(4) NOT NULL DEFAULT 0,                   -- количество лайков
+  dislike_comment int(4) NOT NULL DEFAULT 0,                -- количество лайков
+  FOREIGN KEY (id_user) REFERENCES users(id),
+  FOREIGN KEY (id_good) REFERENCES goods(id)
+);

@@ -140,14 +140,14 @@
           ?>
           <div class="goods__item">
             <div class="goods__item-image-block">
-              <a class="goods__item-link" href="/">
+              <a class="goods__item-link" href="/goods.php?id=<?=$item['id']?>">
                 <img alt="<?= $item['title'] ?>" title="<?= $item['title'] ?>" class="goods__item-img" src="img/goods/<?= $item['id'] ?>.png" alt="img">
               </a>
             </div>
             <div class="goods__item-content">
-              <div class="goods__item-title">
+              <a class="goods__item-title" href="/goods.php?id=<?=$item['id']?>">
                 <?= $item['title'] ?>
-              </div>
+              </a>
 
               <?php if (isset($item['bonuses']) && $item['bonuses'] !== 0 && $itemStatus && $count > 0) : ?>
                 <div class="goods__item-bonus" style="margin-top: 10px">
