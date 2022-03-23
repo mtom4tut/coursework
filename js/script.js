@@ -51,4 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // console.log(data);
     });
   });
+
+  $('.childModal').on('click', function () {
+    $('#inputHidden').val($(this).data('idcom'))
+  })
 });

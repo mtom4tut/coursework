@@ -140,3 +140,16 @@ CREATE TABLE comments (
   FOREIGN KEY (id_user) REFERENCES users(id),
   FOREIGN KEY (id_good) REFERENCES goods(id)
 );
+
+CREATE TABLE com_rewiew (
+  id_com int(10) NOT NULL,                                  -- id комментария
+  id_user int(10) NOT NULL,                                 -- id пользователя
+  FOREIGN KEY (id_user) REFERENCES users(id),
+  FOREIGN KEY (id_com) REFERENCES comments(id)
+);
+
+CREATE TABLE com_child (
+  id_com int(10) NOT NULL,                                  -- id комментария
+  id_com_child int(10) NOT NULL,                            -- id дочернего комментария
+  FOREIGN KEY (id_com) REFERENCES comments(id)
+);
