@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 23 2022 г., 22:34
+-- Время создания: Апр 05 2022 г., 22:49
 -- Версия сервера: 8.0.24
 -- Версия PHP: 7.1.33
 
@@ -83,7 +83,14 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `id_user`, `id_good`, `text_comment`, `like_comment`, `dislike_comment`) VALUES
 (1, 9, 6, 'test test com\r\n', 1, 0),
 (2, 9, 6, 'test 2 test 2\r\n', 0, 1),
-(3, 9, 6, 'children comment', 0, 0);
+(3, 9, 6, 'children comment', 0, 0),
+(4, 9, 1, 'новый комментарий ', 1, 0),
+(5, 9, 1, 'ответ на комментарий', 0, 0),
+(6, 9, 3, 'rkfccysq ,gdefgdfsg', 2, 0),
+(7, 9, 3, 'hdfghfgdhfgh fgjhgfjfghjghf', 0, 0),
+(8, 8, 3, 'rteyrteyty', 0, 1),
+(9, 8, 3, 'ur5tuyrth rtherthtrhyrteyerty', 0, 0),
+(10, 8, 5, 'hdthdtgfhgchfdgh hfdghgfdh', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +108,10 @@ CREATE TABLE `com_child` (
 --
 
 INSERT INTO `com_child` (`id_com`, `id_com_child`) VALUES
-(1, 3);
+(1, 3),
+(4, 5),
+(6, 7),
+(6, 8);
 
 -- --------------------------------------------------------
 
@@ -120,7 +130,11 @@ CREATE TABLE `com_rewiew` (
 
 INSERT INTO `com_rewiew` (`id_com`, `id_user`) VALUES
 (1, 9),
-(2, 9);
+(2, 9),
+(4, 9),
+(6, 9),
+(6, 8),
+(8, 8);
 
 -- --------------------------------------------------------
 
@@ -616,7 +630,7 @@ ALTER TABLE `by_price`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `goods`
