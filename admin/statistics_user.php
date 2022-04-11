@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Подключение бд
 include_once("../config/init.php");
 
@@ -31,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
       }
     },
   ];
+  $_SESSION['time_a'] = $_POST["date-to"];
+  $_SESSION['time_b'] = $_POST["date-from"];
 
   // заполняем массив ошибками, если есть
   foreach ($_POST as $key => $value) {

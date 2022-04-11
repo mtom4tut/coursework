@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
 $goods = "";
 
 if (isset($_SESSION['user'])) {
-  $sql = "SELECT g.id, g.title, g.price, g.description, sc.number, s.discount, s.bonuses, s.data_start, s.data_end from goods g join shopping_cart sc on g.id = sc.id_good left join stock s on g.id = s.id_good WHERE sc.id_user = ?";
+  $sql = "SELECT g.id, g.title, g.price, g.description, sc.number, s.discount, s.bonuses, s.data_start, s.data_end from  goods g join shopping_cart sc on g.id = sc.id_good left join stock s on g.id = s.id_good WHERE sc.id_user = ?";
   $goods = db_fetch_data($link, $sql, [$_SESSION['user']['id']]);
 } elseif (isset($_SESSION['basket'])) {
   $goods = $_SESSION['basket'];

@@ -1,7 +1,8 @@
 {
     "name": "course-php/course-php",
     "require": {
-        "swiftmailer/swiftmailer": "dev-master"
+        "swiftmailer/swiftmailer": "dev-master",
+        "setasign/fpdf": "^1.8"
     },
     "autoload": {
         "psr-4": {

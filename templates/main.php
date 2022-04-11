@@ -177,5 +177,6 @@
         <?php endforeach; ?>
       <?php endif; ?>
     </div>
+    <a  class="btn-primary" href="/pdf/price_list.php"> Прайс-лист в PDF </a>
   </div>
 </main>

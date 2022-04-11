@@ -129,6 +129,7 @@ if ($goods !== "") {
           <?php endif; ?>
         </h3>
         <a href="basket_buy.php" class="btn-primary">Оформить заказ</a>
+        <a class="btn-primary" href="/pdf/basket_pdf.php"> Корзина в PDF </a>
       </div>
     <?php endif; ?>
   </div>

@@ -4,7 +4,7 @@
     <input class="form__input form__input--date" type="text" name="date-from" id="date-from" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="<?= get_post_val("date-from") ?>">
 
     <?php if (isset($errors["date-from"])) : ?>
-      <p class="form__message"> <?= $errors["date-from"] ?> </p>
+      <p class="form__message"> <?= $errors["date-from"]?> </p>
     <?php endif; ?>
   </div>
 
@@ -19,9 +19,13 @@
   </div>
 
   <input type="submit" class="btn-primary" name="" value="Сформировать отчет">
+  
+  <a  class="btn-primary" href="/pdf/statistic.php"> Сформировать PDF </a>
 </form>
 
 <div class="report">
+  <?php 
+  ?>
   <?php if (isset($_SESSION['data_card']) && isset($_SESSION['data_total'])) : ?>
     <div class="report__item">
       <div class="report__info">
