@@ -58,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
   } else {
     $sql_card = "select COUNT(*) from users u JOIN bonus_cards bc on bc.id_user = u.id WHERE ? <= u.date_now and u.date_now <= ?";
     $sql_total = "select COUNT(*) from users u WHERE ? <= u.date_now and u.date_now <= ?";
-
     $_SESSION['data_card'] = db_fetch_data($link, $sql_card, [$_POST['date-from'], $_POST['date-to']])[0]['COUNT(*)'];
     $_SESSION['data_total'] = db_fetch_data($link, $sql_total, [$_POST['date-from'], $_POST['date-to']])[0]['COUNT(*)'];
 
@@ -76,6 +75,67 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $_SESSION['data_amount'] = number_format((float)$_SESSION['data_amount'], 2, '.', '');
     $_SESSION['data_amount_total'] = number_format((float)$_SESSION['data_amount_total'], 2, '.', '');
+
+    $sql_sale = "select MONTH(o.date) month, sum(o.amount) sale from orders o WHERE ? < o.date and o.date < ? group by MONTH(o.date)";
+    $data_sale = db_fetch_data($link, $sql_sale, [$_POST['date-from'], $_POST['date-to']]);
+
+    $_SESSION['data_sale'] = [];
+    $_SESSION['data_sale'][] = ['Месяц', 'Выручка'];
+    foreach ($data_sale as $key => $value) {
+      $month = "";
+      switch ($value['month']) {
+        case 1:
+          $month = "Январь";
+          break;
+        case 2:
+          $month = "Февраль";
+          break;
+        case 3:
+          $month = "Март";
+          break;
+        case 4:
+          $month = "Апрель";
+          break;
+        case 5:
+          $month = "Май";
+          break;
+        case 6:
+          $month = "Июнь";
+          break;
+        case 7:
+          $month = "Июль";
+          break;
+        case 8:
+          $month = "Август";
+          break;
+        case 9:
+          $month = "Сентабрь";
+          break;
+        case 10:
+          $month = "Октябрь";
+          break;
+        case 11:
+          $month = "Ноябрь";
+          break;
+        case 12:
+          $month = "Декабрь";
+          break;
+      }
+      $_SESSION['data_sale'][] = [$month, number_format((float)$value['sale'], 2, '.', '')];
+    }
+
+    $_SESSION['data_sale'] = json_encode($_SESSION['data_sale']);
+
+    $sql_goods = "SELECT title, price FROM goods";
+    $data_goods = db_fetch_data($link, $sql_goods);
+
+    $_SESSION['data_goods'] = [];
+    $_SESSION['data_goods'][] = ['Товар', 'Цена'];
+
+    foreach ($data_goods as $value) {
+      $_SESSION['data_goods'][] = [$value['title'], $value['price']];
+    }
+    $_SESSION['data_goods'] = json_encode($_SESSION['data_goods']);
 
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();

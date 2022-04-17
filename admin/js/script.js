@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   let startPicker = flatpickr("#date-from", {
-    dateFormat: "d.m.Y",
+    dateFormat: "Y-m-d",
     locale: "ru",
     // для интервала дат
     onChange: function (selectedDates) {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   let endPicker = flatpickr("#date-to", {
-    dateFormat: "d.m.Y",
+    dateFormat: "Y-m-d",
     locale: "ru",
     // для интервала дат
     onChange: function (selectedDates) {
