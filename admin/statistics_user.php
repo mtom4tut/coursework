@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Подключение бд
 include_once("../config/init.php");
 
@@ -136,6 +135,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
       $_SESSION['data_goods'][] = [$value['title'], $value['price']];
     }
     $_SESSION['data_goods'] = json_encode($_SESSION['data_goods']);
+
+    $sql_count_goods = "SELECT MONTH(o.date) month, g.title, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order join goods g on g.id = oi.id_good GROUP by MONTH(o.date), g.id";
+    $data_count_goods = db_fetch_data($link, $sql_count_goods);
+    $_SESSION['data_count_goods'] = [];
+    $_SESSION['data_count_goods'][] = ['ID', 'Месяца', 'Продано товара', 'Товар'];
+    foreach ($data_count_goods as $value) {
+        $_SESSION['data_count_goods'][] = [$value['title'], $value['month'], $value['num'], $value['title']];
+    }
+    $_SESSION['data_count_goods'] = json_encode($_SESSION['data_count_goods']);
 
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();
