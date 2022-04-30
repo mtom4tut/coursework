@@ -408,7 +408,7 @@
                     var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
                     var options = {
-                        title: "Red Sox Attendance",
+                        title: "Календарь продаж",
                         height: 350,
                     };
 
@@ -443,8 +443,6 @@
                     return [item[0], item[1], parseInt(item[2])];
                 })
 
-                console.log(sankey_data)
-
                 function drawChart() {
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'From');
@@ -462,6 +460,60 @@
                     chart.draw(data, options);
                 }
             </script>
+        </body>
+
+        </html>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['data_count_goods'])) : ?>
+        <html>
+
+        <head>
+            <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                let corechart = <?= $_SESSION['data_count_goods'] ?>;
+                corechart = corechart.map((item, i) => {
+                    if (i === 0) {
+                        return ['Месяц', 'Количество покупок'];
+                    }
+                    return [item[1], parseInt(item[2])];
+                })
+
+                console.log(corechart)
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable(corechart);
+
+                    var options = {
+                        title: "Линии трейда продаж",
+                        trendlines: {
+                            0: {
+                                type: 'linear',
+                                showR2: true,
+                                visibleInLegend: true
+                            }
+                        }
+                    };
+
+                    var chartLinear = new google.visualization.ScatterChart(document.getElementById('chartLinear'));
+                    chartLinear.draw(data, options);
+
+                    options.trendlines[0].type = 'exponential';
+                    options.colors = ['#6F9654'];
+
+                    var chartExponential = new google.visualization.ScatterChart(document.getElementById('chartExponential'));
+                    chartExponential.draw(data, options);
+                }
+            </script>
+        </head>
+
+        <body>
+            <div id="chartLinear" style="height: 350px; width: 800px"></div>
+            <div id="chartExponential" style="height: 350px; width: 800px"></div>
         </body>
 
         </html>
