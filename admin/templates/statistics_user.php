@@ -344,49 +344,10 @@
         </html>
     <?php endif; ?>
 
-    <!-- 3. Календарь (отражает количество продаж по месяцам) -->
-    <?php if (isset($_SESSION['data_count_goods_month'])) : ?>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            google.charts.load("current", {
-                packages: ['corechart']
-            });
-
-            let dataChartColMonth = <?= $_SESSION['data_count_goods_month'] ?>;
-            dataChartColMonth = dataChartColMonth.map((item, i) => {
-                if (i === 0) {
-                    return [item[0], item[1]];
-                }
-                return [item[0], parseFloat(item[1])];
-            })
-
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable(dataChartColMonth);
-
-                var view = new google.visualization.DataView(data);
-
-                var options = {
-                    title: "Продажи по мясяцам",
-                    width: 600,
-                    height: 400,
-                    hAxis: {
-                        title: 'Месяца'
-                    },
-                };
-                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values_2"));
-                chart.draw(view, options);
-            }
-        </script>
-        <div id="columnchart_values_2" style="width: 900px; height: 400px;"></div>
-    <?php endif; ?>
-
     <!-- 4. Карты (отражает количество покупателей по городам) -->
     <html>
 
     <head>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
             google.charts.load('current', {
                 'packages': ['geochart'],
@@ -413,4 +374,54 @@
     </body>
 
     </html>
+
+    <!-- 3. Календарь (отражает количество продаж по месяцам) -->
+    <?php if (isset($_SESSION['data_count_goods_date'])) : ?>
+        <html>
+
+        <head>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load("current", {
+                    packages: ["calendar"]
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn({
+                        type: 'date',
+                        id: 'Date'
+                    });
+                    dataTable.addColumn({
+                        type: 'number',
+                        id: 'Won/Loss'
+                    });
+                    let data_count_goods_date = <?= $_SESSION['data_count_goods_date'] ?>;
+
+                    data_count_goods_date = data_count_goods_date.map((item, i) => {
+                        return [new Date(item[0]), parseInt(item[1])];
+                    })
+
+                    console.log(data_count_goods_date)
+                    dataTable.addRows(data_count_goods_date);
+
+                    var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+                    var options = {
+                        title: "Red Sox Attendance",
+                        height: 350,
+                    };
+
+                    chart.draw(dataTable, options);
+                }
+            </script>
+        </head>
+
+        <body>
+            <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+        </body>
+
+        </html>
+    <?php endif; ?>
 </div>

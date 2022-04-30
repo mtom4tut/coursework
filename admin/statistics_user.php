@@ -145,14 +145,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
     $_SESSION['data_count_goods'] = json_encode($_SESSION['data_count_goods']);
 
-    $sql_count_goods_month = "SELECT MONTH(o.date) month, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order GROUP by MONTH(o.date)";
-    $data_count_goods_month = db_fetch_data($link, $sql_count_goods_month);
-    $_SESSION['data_count_goods_month'] = [];
-    $_SESSION['data_count_goods_month'][] = ['Месяц', 'Продано товара'];
-    foreach ($data_count_goods_month as $value) {
-        $_SESSION['data_count_goods_month'][] = [$value['month'], $value['num']];
+    $sql_count_goods_date = "SELECT o.date dat, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order GROUP by o.date";
+    $data_count_goods_date = db_fetch_data($link, $sql_count_goods_date);
+    $_SESSION['data_count_goods_date'] = [];
+    foreach ($data_count_goods_date as $value) {
+        $_SESSION['data_count_goods_date'][] = [$value['dat'], $value['num']];
     }
-    $_SESSION['data_count_goods_month'] = json_encode($_SESSION['data_count_goods_month']);
+    $_SESSION['data_count_goods_date'] = json_encode($_SESSION['data_count_goods_date']);
 
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();
