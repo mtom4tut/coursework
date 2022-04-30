@@ -518,4 +518,52 @@
 
         </html>
     <?php endif; ?>
+
+    <?php if (isset($_SESSION['timeline'])) : ?>
+        <html>
+
+        <head>
+            <script type="text/javascript">
+                google.charts.load('current', {
+                    'packages': ['timeline']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                let timeline = <?= $_SESSION['timeline'] ?>;
+                timeline = timeline.map((item, i) => {
+                    return [item[0], new Date(item[1]), new Date(item[2])];
+                })
+
+                console.log(timeline)
+
+                function drawChart() {
+                    var container = document.getElementById('timeline');
+                    var chart = new google.visualization.Timeline(container);
+                    var dataTable = new google.visualization.DataTable();
+
+                    dataTable.addColumn({
+                        type: 'string',
+                        id: 'Товар'
+                    });
+                    dataTable.addColumn({
+                        type: 'date',
+                        id: 'Дата первой покупки'
+                    });
+                    dataTable.addColumn({
+                        type: 'date',
+                        id: 'Дата последней покупки'
+                    });
+                    dataTable.addRows(timeline);
+
+                    chart.draw(dataTable);
+                }
+            </script>
+        </head>
+
+        <body>
+            <div id="timeline" style="height: 600px;"></div>
+        </body>
+
+        </html>
+    <?php endif; ?>
 </div>

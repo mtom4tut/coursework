@@ -161,6 +161,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
     $_SESSION['sankey_data'] = json_encode($_SESSION['sankey_data']);
 
+    $sql_timeline = "SELECT g.title, MIN(o.date) min_date, MAX(o.date) max_date FROM orders o join order_items oi on o.id = oi.id_order join goods g on g.id = oi.id_good GROUP by g.id";
+    $timeline = db_fetch_data($link, $sql_timeline);
+    $_SESSION['timeline'] = [];
+    foreach ($timeline as $value) {
+        $_SESSION['timeline'][] = [$value['title'], $value['min_date'], $value['max_date']];
+    }
+    $_SESSION['timeline'] = json_encode($_SESSION['timeline']);
+
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();
   }
