@@ -139,11 +139,20 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $sql_count_goods = "SELECT MONTH(o.date) month, g.title, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order join goods g on g.id = oi.id_good GROUP by MONTH(o.date), g.id";
     $data_count_goods = db_fetch_data($link, $sql_count_goods);
     $_SESSION['data_count_goods'] = [];
-    $_SESSION['data_count_goods'][] = ['ID', 'Месяца', 'Продано товара', 'Товар'];
+    $_SESSION['data_count_goods'][] = ['ID', 'Месяц', 'Продано товара', 'Товар'];
     foreach ($data_count_goods as $value) {
         $_SESSION['data_count_goods'][] = [$value['title'], $value['month'], $value['num'], $value['title']];
     }
     $_SESSION['data_count_goods'] = json_encode($_SESSION['data_count_goods']);
+
+    $sql_count_goods_month = "SELECT MONTH(o.date) month, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order GROUP by MONTH(o.date)";
+    $data_count_goods_month = db_fetch_data($link, $sql_count_goods_month);
+    $_SESSION['data_count_goods_month'] = [];
+    $_SESSION['data_count_goods_month'][] = ['Месяц', 'Продано товара'];
+    foreach ($data_count_goods_month as $value) {
+        $_SESSION['data_count_goods_month'][] = [$value['month'], $value['num']];
+    }
+    $_SESSION['data_count_goods_month'] = json_encode($_SESSION['data_count_goods_month']);
 
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();

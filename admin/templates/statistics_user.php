@@ -237,7 +237,7 @@
                 chart.draw(view, options);
             }
         </script>
-        <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+        <div id="columnchart_values" style="width: 900px; height: 400px;"></div>
     <?php endif; ?>
 
     <!-- 1. Диаграмма областей (по оси Ox размещены годы, месяцы или дни, по оси Oy размещены две области: 1) ожидаемая прибыль; 2) фактическая прибыль) -->
@@ -292,8 +292,9 @@
     <?php endif; ?>
 
     <!-- 2. Пузырьковая диаграмма (четыре измерения: 1) цвет – категория товара; 2) размер – количество проданных товаров; 3) ось Х – временная шкала (годы, месяцы или дни); 4) ось Y - цена товара) -->
-    <?php if ($_SESSION['data_count_goods']) : ?>
+    <?php if (isset($_SESSION['data_count_goods'])) : ?>
         <html>
+
         <head>
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
@@ -303,14 +304,14 @@
                 google.charts.setOnLoadCallback(drawSeriesChart);
 
                 let data_count_goods = <?= $_SESSION['data_count_goods'] ?>;
+                let count_goods = 0;
                 data_count_goods = data_count_goods.map((item, i) => {
                     if (i === 0) {
                         return [item[0], item[1], item[2], item[3], 'Количество'];
                     }
+                    count_goods += parseInt(item[2]);
                     return [item[0], item[1], parseInt(item[2]), item[3], parseInt(item[2])];
                 })
-
-                console.log(data_count_goods);
 
                 function drawSeriesChart() {
                     var data = google.visualization.arrayToDataTable(data_count_goods);
@@ -342,4 +343,74 @@
 
         </html>
     <?php endif; ?>
+
+    <!-- 3. Календарь (отражает количество продаж по месяцам) -->
+    <?php if (isset($_SESSION['data_count_goods_month'])) : ?>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {
+                packages: ['corechart']
+            });
+
+            let dataChartColMonth = <?= $_SESSION['data_count_goods_month'] ?>;
+            dataChartColMonth = dataChartColMonth.map((item, i) => {
+                if (i === 0) {
+                    return [item[0], item[1]];
+                }
+                return [item[0], parseFloat(item[1])];
+            })
+
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable(dataChartColMonth);
+
+                var view = new google.visualization.DataView(data);
+
+                var options = {
+                    title: "Продажи по мясяцам",
+                    width: 600,
+                    height: 400,
+                    hAxis: {
+                        title: 'Месяца'
+                    },
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values_2"));
+                chart.draw(view, options);
+            }
+        </script>
+        <div id="columnchart_values_2" style="width: 900px; height: 400px;"></div>
+    <?php endif; ?>
+
+    <!-- 4. Карты (отражает количество покупателей по городам) -->
+    <html>
+
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['geochart'],
+            });
+            google.charts.setOnLoadCallback(drawRegionsMap);
+
+            function drawRegionsMap() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Страна', 'Продажи'],
+                    ['RU', count_goods]
+                ]);
+
+                var options = {};
+
+                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+                chart.draw(data, options);
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="regions_div" style="width: 1000px; height: 500px;"></div>
+    </body>
+
+    </html>
 </div>
