@@ -403,7 +403,6 @@
                         return [new Date(item[0]), parseInt(item[1])];
                     })
 
-                    console.log(data_count_goods_date)
                     dataTable.addRows(data_count_goods_date);
 
                     var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
@@ -420,6 +419,49 @@
 
         <body>
             <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+        </body>
+
+        </html>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['sankey_data'])) : ?>
+        <html>
+
+        <body>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+            <script type="text/javascript">
+                google.charts.load("current", {
+                    packages: ["sankey"]
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                let sankey_data = <?= $_SESSION['sankey_data'] ?>;
+                sankey_data = sankey_data.map((item, i) => {
+                    return [item[0], item[1], parseInt(item[2])];
+                })
+
+                console.log(sankey_data)
+
+                function drawChart() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'From');
+                    data.addColumn('string', 'To');
+                    data.addColumn('number', 'Количество');
+                    data.addRows(sankey_data);
+
+                    // Set chart options
+                    var options = {
+                        width: 600,
+                    };
+
+                    // Instantiate and draw our chart, passing in some options.
+                    var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+                    chart.draw(data, options);
+                }
+            </script>
         </body>
 
         </html>

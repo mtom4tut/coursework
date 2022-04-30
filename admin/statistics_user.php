@@ -153,6 +153,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
     $_SESSION['data_count_goods_date'] = json_encode($_SESSION['data_count_goods_date']);
 
+    $sql_sankey_data = "SELECT u.username, g.title, sum(oi.quantity) num FROM orders o join order_items oi on o.id = oi.id_order join goods g on g.id = oi.id_good join users u on u.id = o.id_user GROUP by o.id_user, oi.id_good";
+    $sankey_data = db_fetch_data($link, $sql_sankey_data);
+    $_SESSION['sankey_data'] = [];
+    foreach ($sankey_data as $value) {
+        $_SESSION['sankey_data'][] = [$value['username'], $value['title'], $value['num']];
+    }
+    $_SESSION['sankey_data'] = json_encode($_SESSION['sankey_data']);
+
     header("Location: /admin/statistics_user.php"); // переадресация
     exit();
   }
