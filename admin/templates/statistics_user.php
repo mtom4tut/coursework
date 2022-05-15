@@ -92,6 +92,121 @@
             oldItem = item
         })
     </script>
+
+    <div id="tableLB9" style="margin-top: 20px">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td rowspan="2"> № </td>
+                    <td rowspan="2"> Выручка </td>
+                    <td colspan="2"> Скользящие средние </td>
+                    <td rowspan="2"> Взвешанная скользящая средняя l = 5 </td>
+                </tr>
+
+                <tr>
+                    <td> l = 3 </td>
+                    <td> l = 7 </td>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const dataLB9 = <?= $_SESSION['month_amount'] ?>;
+        const firstElemLB9 = dataLB9[0];
+        const chartsLB9 = [];
+
+        const tBodyLB9 = document.querySelector('#tableLB9 tbody');
+        dataLB9.forEach((item, i) => {
+            const tr = document.createElement('tr');
+
+            if (i === 0) {
+                tr.innerHTML = `
+                    <td> 1 </td>
+                    <td> ${item.toFixed(2)} </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                `
+                tBodyLB9.append(tr)
+                chartsLB9.push([1, Number(item.toFixed(2)), 0, 0, 0])
+                return
+            }
+
+            let col3LB9 = '-'
+            let col4LB9 = '-'
+            let col5LB9 = '-'
+
+            if (dataLB9[i + 1]) {
+                col3LB9 = (dataLB9[i - 1] + item + dataLB9[i + 1]) / 3
+                col3LB9 = col3LB9.toFixed(2)
+            }
+
+            if (dataLB9[i + 5]) {
+                col4LB9 = (dataLB9[i - 1] + item + dataLB9[i + 1] + dataLB9[i + 2] + dataLB9[i + 3] + dataLB9[i + 4] + dataLB9[i + 5]) / 7
+                col4LB9 = col4LB9.toFixed(2)
+            }
+
+            if (dataLB9[i + 2] && i !== 1) {
+                col5LB9 = (-3 * dataLB9[i - 2] + 12 * dataLB9[i - 1] + 17 * item + 12 * dataLB9[i + 1] + 3 * dataLB9[i + 2]) / 35
+                col5LB9 = col5LB9.toFixed(2)
+            }
+
+            tr.innerHTML = `
+                    <td> ${i + 1} </td>
+                    <td> ${item.toFixed(2)} </td>
+                    <td> ${col3LB9} </td>
+                    <td> ${col4LB9} </td>
+                    <td> ${col5LB9} </td>
+                `
+
+            tBodyLB9.append(tr)
+            chartsLB9.push([i + 1, Number(item.toFixed(2)), col3LB9 === '-' ? 0 : Number(col3LB9), col4LB9 === '-' ? 0 : Number(col4LB9), col5LB9 === '-' ? 0 : Number(col5LB9)])
+        })
+    </script>
+
+    <html>
+
+    <head>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {
+                'packages': ['line']
+            });
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('number', 'Месяц');
+                data.addColumn('number', 'Выручка');
+                data.addColumn('number', 'Скользящая средняя l = 3');
+                data.addColumn('number', 'Скользящая средняя l = 7');
+                data.addColumn('number', 'Взвешанная скользящая средняя l = 5');
+
+                data.addRows(chartsLB9);
+
+                var options = {
+                    title: 'Сглаживание ряда',
+                    curveType: 'function',
+                    legend: {
+                        position: 'bottom'
+                    }
+                };
+
+                var chart = new google.charts.Line(document.getElementById('curve_chartLB9'));
+                chart.draw(data, google.charts.Line.convertOptions(options));
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="curve_chartLB9" style="width: 900px; height: 500px"></div>
+    </body>
+
+    </html>
 <?php endif; ?>
 
 <div class="report">
