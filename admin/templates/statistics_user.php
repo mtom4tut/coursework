@@ -23,9 +23,78 @@
     <a class="btn-primary" href="/pdf/statistic.php"> Сформировать PDF </a>
 </form>
 
+<?php if (isset($_SESSION['month_amount'])) : ?>
+    <div id="tableLB8" style="margin-top: 20px">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td rowspan="2"> № </td>
+                    <td rowspan="2"> Выручка </td>
+                    <td colspan="2"> Абсолютный прирост, руб </td>
+                    <td colspan="2"> Темп роста, % </td>
+                    <td colspan="2"> Темп прироста, % </td>
+                </tr>
+
+                <tr>
+                    <td> Цепной </td>
+                    <td> Базисный </td>
+                    <td> Цепной </td>
+                    <td> Базисный </td>
+                    <td> Цепной </td>
+                    <td> Базисный </td>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const dataLB8 = <?= $_SESSION['month_amount'] ?>;
+        const firstElem = dataLB8[0];
+        let oldItem;
+
+        const tBody = document.querySelector('#tableLB8 tbody');
+        dataLB8.forEach((item, i) => {
+            const tr = document.createElement('tr');
+
+            if (i === 0) {
+                tr.innerHTML = `
+                    <td> 1 </td>
+                    <td> ${item.toFixed(2)} </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                    <td> - </td>
+                `
+                tBody.append(tr)
+                oldItem = item
+                return
+            }
+
+            const r1 = item / oldItem * 100;
+            const r2 = item / firstElem * 100;
+            tr.innerHTML = `
+                    <td> ${i + 1} </td>
+                    <td> ${item.toFixed(2)} </td>
+                    <td> ${(item - oldItem).toFixed(2)} </td>
+                    <td> ${(item - firstElem).toFixed(2)} </td>
+                    <td> ${r1.toFixed(2)} </td>
+                    <td> ${r2.toFixed(2)} </td>
+                    <td> ${(r1 - 100).toFixed(2)} </td>
+                    <td> ${(r2 - 100).toFixed(2) } </td>
+                `
+
+            tBody.append(tr)
+            oldItem = item
+        })
+    </script>
+<?php endif; ?>
+
 <div class="report">
-    <?php
-    ?>
     <?php if (isset($_SESSION['data_card']) && isset($_SESSION['data_total'])) : ?>
         <div class="report__item">
             <div class="report__info">
@@ -483,8 +552,6 @@
                     return [item[1], parseInt(item[2])];
                 })
 
-                console.log(corechart)
-
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable(corechart);
 
@@ -533,8 +600,6 @@
                 timeline = timeline.map((item, i) => {
                     return [item[0], new Date(item[1]), new Date(item[2])];
                 })
-
-                console.log(timeline)
 
                 function drawChart() {
                     var container = document.getElementById('timeline');
