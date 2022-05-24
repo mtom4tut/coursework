@@ -168,6 +168,75 @@
         })
     </script>
 
+    <div id="tableLB10" style="margin-top: 20px">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td> № </td>
+                    <td> y<sub>t</sub> </td>
+                    <td> t </td>
+                    <td> y<sub>t</sub>, t </td>
+                    <td> y<sup>2</sup></td>
+                    <td> y<sub>t</sub>, t<sup>2</sup> </td>
+                    <td> t<sup>4</sup> </td>
+                </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const tBodyLB10 = document.querySelector('#tableLB10 tbody');
+        const dataLB8Len = Math.round(dataLB8.length/2) * -1;
+        let sumY = 0;
+        let sumYT = 0;
+        let sumT2 = 0;
+        let sumYT2 = 0;
+        let sumT4 = 0;
+        dataLB8.forEach((item, i) => {
+            const tr = document.createElement('tr');
+
+            const t = dataLB8Len + i + 1;
+            const t2 = t**2;
+            const t4 = t**4;
+            tr.innerHTML = `
+                    <td> ${i + 1} </td>
+                    <td> ${item.toFixed(2)} </td>
+                    <td> ${t} </td>
+                    <td> ${(item*t).toFixed(2)} </td>
+                    <td> ${t2} </td>
+                    <td> ${(item*t2).toFixed(2)} </td>
+                    <td> ${t4} </td>
+                `
+            sumY += item
+            sumYT += item*t
+            sumT2 += t2
+            sumYT2 += item*t2
+            sumT4 += t4
+            tBodyLB10.append(tr)
+            oldItem = item
+        })
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+                    <td> Сумма </td>
+                    <td> ${sumY.toFixed(2)} </td>
+                    <td> - </td>
+                    <td> ${sumYT.toFixed(2)} </td>
+                    <td> ${sumT2} </td>
+                    <td> ${sumYT2.toFixed(2)} </td>
+                    <td> ${sumT4} </td>
+                `
+        tBodyLB10.append(tr)
+
+        const a0 = sumY/dataLB8.length
+        const a1 = sumYT/sumT2
+        const a2 = (dataLB8.length*sumYT2-sumT2*sumY)/(dataLB8.length*sumT4-sumT2**2)
+        const a0p = a0-sumT2/dataLB8.length*a2
+    </script>
+
     <html>
 
     <head>
