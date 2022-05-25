@@ -235,6 +235,11 @@
         const a1 = sumYT/sumT2
         const a2 = (dataLB8.length*sumYT2-sumT2*sumY)/(dataLB8.length*sumT4-sumT2**2)
         const a0p = a0-sumT2/dataLB8.length*a2
+
+        const chartsLB10 = [];
+        for (let i = 1; i < dataLB8.length; i++) {
+            chartsLB10.push([i, a0+a1*i, a0p+a1*i+a2*i**2])
+        }
     </script>
 
     <html>
@@ -276,6 +281,45 @@
     </body>
 
     </html>
+
+
+    <html>
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['line']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Месяц');
+            data.addColumn('number', 'Линейная модель');
+            data.addColumn('number', 'Параболическая модель');
+
+            data.addRows(chartsLB10);
+
+            var options = {
+                title: 'Лабораторная работа №10',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
+
+            var chart = new google.charts.Line(document.getElementById('curve_chartLB10'));
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+    </script>
+</head>
+
+<body>
+    <div id="curve_chartLB10" style="width: 900px; height: 500px"></div>
+</body>
+
+</html>
 <?php endif; ?>
 
 <div class="report">
