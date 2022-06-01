@@ -23,6 +23,17 @@
     <a class="btn-primary" href="/pdf/statistic.php"> Сформировать PDF </a>
 </form>
 
+<style>
+    td {
+        min-width: 70px;
+        text-align: center;
+    }
+
+    thead tr td {
+        background-color: #97cf1f;
+    }
+</style>
+
 <?php if (isset($_SESSION['month_amount'])) : ?>
     <div id="tableLB8" style="margin-top: 20px">
         <table border="1">
@@ -263,7 +274,7 @@
                 data.addRows(chartsLB9);
 
                 var options = {
-                    title: 'Сглаживание ряда',
+                    title: 'Лабораторная работа №9',
                     curveType: 'function',
                     legend: {
                         position: 'bottom'
